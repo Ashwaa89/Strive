@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dev Module 1 Build</title>
+
+    <style>
+body {
+height:100%;
+width:100%;   
+}
+.Pic > li> img {
+height:20px;
+position: relative;
+margin-left:5px;
+z-index: 20;
+}
+.Pic > li:hover >img {
+position: relative;
+height:300px;   
+transition: height 1.5s;
+z-index: 20;
+}
+.TopImg {
+display: block;
+position:relative;
+margin-left: auto;
+margin-right: auto;
+}
+li {
+vertical-align: top;
+}
+.Academia {
+width:50%;
+position: relative;
+float: left;
+}
+.Academia > th {
+border: 1px dashed black;
+border-width: 1px 1px 2px 1px;
+align-items: center;
+}
+.Academia > td {
+border: 1px solid black;
+border-width: 1px 1px 2px 1px;
+text-align:  center;
+
+}
+td {
+vertical-align: top;
+text-align:center;
+background-color: white;
+
+}
+table {
+min-width:100%;
+align-content: center;
+border:1px solid black;
+border-radius: 22px;
+background-color: rgba(100,0,300,0.2);
+}
+</style>
+</head>
+<body>
+    <img src="https://i.ibb.co/fkb39xx/image.png" alt="Ashley Morgan Image" class="TopImg" >
+
+    <div style="float:left;margin-left:2%;vertical-align:top;max-width:60%">
+      
+    <h4>Hobbies/Interests</h4>
+    <ul class="Pic" >
+        <li>Classic Cars<br><img  src="https://i.ibb.co/JsC679r/IMG-20170606-201037.jpg" alt="Mini 1275GT"><img src="https://i.ibb.co/51TKQFb/image.png" alt="BMW E30 Baur"><img src="https://i.ibb.co/hLptT52/image.png" alt="BMW E30 Baur and Mini 1275GT"></li>
+        <li>Snowboarding<br><img src="https://i.ibb.co/z2QMg2B/image.png" alt="Alps Mountain Snow"></li>
+        <li>Video Games<br><img src="https://i.ibb.co/TvVbGpS/image.png" alt="Crash Bandicoot Aku Aku Mask"></li>
+    </ul>
+  </div>
+
+
+<h4>Academia</h4>
+    <table class="Academia">
+<tr><th>Subject</th><th>Level</th></tr>
+    <tr><td>I.T Practitioners</td><td>National Diploma</td></tr>
+    <tr><td>Cisco CCNA Module 1</td><td>National Diploma</td></tr>
+    <tr><td>I.T Management for Business</td><td>Degree</td></tr>
+    <tr><td>11 Years Systems Developer for Rolls Royce Motor Cars</td><td>Work</td></tr>
+</table>
+</div>
+</body>

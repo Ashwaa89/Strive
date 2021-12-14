@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley Morgan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+    <style>
+body {
+background-color: #444;
+color:white;
+font-family: 'Roboto Mono', monospace;
+}
+.Container {          
+background-color: transparent;
+border:0px solid black;
+clip-path:circle(15% at 54% 50%);
+align-content: center;
+transition: clip-path 1s;
+position:relative;
+text-align:center;
+position: absolute;
+width:80vw;
+height:80vh;
+ left:5vw;
+
+        }
+
+.Container  p { 
+display: none;
+
+color:white;
+opacity: 0;
+transition: opacity 1s;
+transition-delay: 2s;
+}
+.Container h2:hover p { 
+    display: block;
+opacity: 1;
+transition: opacity 1s;
+color:green;
+background-color: gray;
+position: fixed;
+z-index:30;
+margin-left:35%;
+transition-delay: all 2s;
+}
+.Container div {
+opacity: 0;
+transition: all 2s;
+}
+.Container:hover {
+clip-path: circle(73.6% at 49% 50%);
+transition: all 2s;
+left:10vw;
+}
+.Container:hover div {
+opacity: 1;
+transition:all 3s;
+}
+
+
+.TopImg {
+border-radius:50px;
+margin-top:0%;
+display: block;
+position:relative;
+z-index:-1;
+width:50%;
+left:25%;
+object-fit:cover;
+border-collapse: separate; 
+height:85%;
+}
+.Left {
+float:left;
+margin-left:2%;
+margin-top:0%;
+position:absolute;
+width:23%;
+}
+.Left h4 {
+text-align: left;
+margin-top:2%;
+}
+.Right h4 {
+text-align: left;
+margin-top:2%;
+margin-left:10px;
+}
+.Left img {
+width:20px;
+height:20px;
+position: relative;
+filter:grayscale(100%);
+}
+.Left .Wide:hover {
+width:auto;   
+height:200px;
+transition: all 3s;
+object-fit: cover;
+filter:none;
+}
+.Left .Tall:hover {
+width:100%;   
+height:auto;
+transition: all 3s;
+object-fit: cover;
+filter:none;
+}
+.Right {
+float:right;
+margin-left:75%;
+margin-top:0%;
+position:absolute;
+}
+.ListDiv {
+text-align:center;
+width:100%;
+left:25%;
+position: relative;
+}
+.ListDiv div {
+float: left;    
+}
+table {
+border: 0px rgb(36, 51, 87) solid;
+border-collapse: separate;
+width:100%;
+margin-top:20px;
+text-align: center;
+border-radius: 10px;
+background-color: #444;
+}
+table tr {
+border: 0px white solid;
+border-radius: 10px;
+}
+table tr:hover {
+color:lightskyblue;
+transition: color 0.5s;
+}
+table tr td {
+border: 1px solid white;
+border-radius: 10px;
+transition: color 1s;
+}
+.Right table {
+margin-left:10px;
+width:200%;  
+}
+.Left table {
+margin-left:0px;
+width:98%;
+}
+.Social {
+margin-top:5px;
+}
+.Social img {
+width:auto;
+height:50px;
+filter: invert(1);
+transition: height 1s;
+}
+.Social img:hover {
+height:100px;
+width:auto;
+transition: height 1s;
+}
+</style>
+</head>
+<body style="text-align:center;">
+<div class="Container">
+<div>
+<h1>Ashley Morgan</h1>
+<h2>Southern United Kingdom
+<p>Test Tooltip Location</p>
+</h2>
+<h2>Age 32
+<p>Test Tooltip Age</p>
+</h2>       
+</div>
+        <div class="Left">
+            
+            <table><tr><th>Hobbies/Interests</th></tr><tr><td>Classic Cars<br><img class="Tall"  src="https://i.ibb.co/JsC679r/IMG-20170606-201037.jpg" alt="Mini 1275GT"><img class="Tall" src="https://i.ibb.co/51TKQFb/image.png" alt="BMW E30 Baur"><img class="Tall" src="https://i.ibb.co/hLptT52/image.png" alt="BMW E30 Baur and Mini 1275GT"></td></tr>
+            <tr><td>Snowboarding<br><img class="Wide" src="https://i.ibb.co/z2QMg2B/image.png" alt="Alps Mountain Snow"></td></tr>
+            <tr><td>Video Games<br><img class="Tall" src="https://i.ibb.co/TvVbGpS/image.png" alt="Crash Bandicoot Aku Aku Mask"></td></tr>
+            </table>
+           
+           
+            <table>
+                <tr><th colspan="2">Academia</th></tr>
+                <tr><th>Subject</th><th>Level</th></tr>
+                    <tr><td>I.T Practitioners</td><td>National Diploma</td></tr>
+                    <tr><td>Cisco CCNA Module 1</td><td>National Diploma</td></tr>
+                    <tr><td>I.T Management for Business</td><td>Degree</td></tr>
+                    <tr><td>11 Years Systems Developer for Rolls Royce Motor Cars</td><td>Work</td></tr>
+                </table>
+        </div>
+        <div class="Right">
+         
+            <table>
+                <tr><th>My Top Skills</th></tr>
+                <tr><td>VB.net</td></tr>
+                <tr><td>Oracle SQL</td></tr>
+                <tr><td>Custom Controls</td></tr>
+            </table>
+
+                   
+                         <table>
+                             <tr><th>Skills to accuire</th></tr>
+                            <tr><td>JavaScript</td></tr>
+                            <tr><td>AJAX</td></tr>
+                            <tr><td>NoSQL</td></tr>
+                        </table>
+           
+        
+        </div>
+<img src="https://i.ibb.co/fkb39xx/image.png" alt="Ashley Morgan Image" class="TopImg" >
+<div class="Social">
+<a href="https://uk.linkedin.com/in/ashley-morgan-6549b394" target="_blank">
+<img src="https://i.ibb.co/Qn8hC5D/107159-circle-linkedin-icon.png" alt="Linkedin Logo"></a>
+<a href="https://www.facebook.com/duds12" target="_blank">
+<img src="https://i.ibb.co/xg68YY5/facebook-logo.png" alt="Facebook Logo"></a>
+<a href="http://myspace.com/duds12" target="_blank">
+<img src="https://i.ibb.co/jbbH6Fg/Myspace-Logo.png" alt="Myspace Logo"></a>
+</div>
+
+
+
+  
+
+    </div>
+
+
+</body>
+</html>
