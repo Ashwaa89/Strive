@@ -1,254 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazon Holiday Gift Guides</title>
     <style>
-body {
-    background-color: rgb(234,237,237);
-    left:0px;
-    top:0px;
-    margin:0px;
-    padding:0px;
-    font-family: Arial, Helvetica, sans-serif;
+      /* .container {
+        height: 100%;
+      }
+      header {
+        height: 1%;
+        background-color: rgb(34, 47, 62, 255);
+        width: 100%;
+        left: 0px;
+        position: relative;
+      }
+      .logo {
+        height: 10%;
+        padding: 0.5% 4% 0.5%;
+        width: 10%;
+        position: relative;
+      }
+      .Menu a {
+        text-decoration: none;
+      }
+      .Menu {
+        padding-left: 3.2%;
+        height: 40px;
+        max-width: 100%;
+        background-color: rgb(53, 71, 88);
+        position: static;
+      }
+      .Menu a Span {
+        color: rgb(232, 235, 236);
+        margin-top: 10px;
+        top: 6px;
+        font-size: 18pt;
+        width: 0px;
+        position: relative;
+        margin-left: 15px;
+      }
+      .Menu a Span:hover {
+        border: 1px solid rgb(232, 235, 236);
+      }
+      main {
+        margin-left: 2.5%;
+        width: 95%;
+        color: black;
+      }
+      .Cards {
+        margin-top: 2%;
+        margin-bottom: 2%;
 
-}
-.container {
+        background-color: rgb(245, 102, 0);
+        text-align: center;
+        color: white;
+
+        font-size: 20pt;
+
+        padding-top: 1%;
+        padding-bottom: 1%;
+        position: relative;
+      }
+      .Gift_Guide {
+        background-image: url("assets/bg-image.png");
+        background-size: 95% 65%;
+        background-repeat: repeat;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+      .Gift_Guide h1 {
+        font-size: 28pt;
+      }
+
+      .Grid {
+        margin: 2% 0px 0% 0px;
+        padding: 20px;
+        background-color: white;
+
+        height: 450px;
+        position: relative;
+        text-align: left;
+      }
+
+      .Grid div {
+        width: 100%;
+      }
+
+      .Category img {
+        width: 100%;
+        height: 90%;
+      }
+      .SubHeader {
+        color: black;
+        height: 90%;
+        text-align: left;
+        padding-left: 1%;
+        font-size: 16pt;
+        font-weight: bold;
+
+        height: 20px;
+        margin-bottom: 60px;
+      }
+      .SubHeader a {
+        margin-left: 10px;
+        font-size: 12pt;
+        text-decoration: none;
+        color: rgb(1, 113, 133);
+      }
+
+      .ImageArrayDiv {
+        background-color: blue;
+        text-align: left;
+        width: 200%;
+      }
+      .ImageArrayDiv img {
+        filter: drop-shadow(12px 2px 2px rgba(225, 229, 232, 0.9));
+        margin-left: 2%;
+        width: 23%;
+        height: 400px;
+        border: 0px solid black;
+        border-radius: 20px;
+        margin-top: 10px;
+        float: left;
+        display: inline;
+      }
+      .ImageArrayDiv img:nth-child(1) {
+        margin-left: 1%;
+      }
+
+      .Menu.Bottom {
+        text-align: center;
+
+        height: 40px;
+        padding: 0px;
+      }
+      .Menu.Bottom div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+        width: 100%;
+
+        padding-left: 0px;
+      }
+      .Menu.Bottom div a {
+        color: white;
+        text-decoration: underline;
+      }
+      footer {
+        height: 200px;
+        background-color: rgb(34, 47, 62, 255);
+        width: 100%;
+        left: 0px;
+        position: static;
+        text-align: center;
+      }
+      footer img {
+        height: 30%;
+        margin-top: 5%;
+      }
+      .Category {
+        color: black;
+        position: relative;
+        text-align: left;
+        color: white;
+        height: 600px;
+        margin-top: 2%;
+
+        background-color: darkorchid;
+      }
+
+      .Category .Sub {
+        width: 23.9%;
+        border: 1px solid green;
+        margin: 0px;
+        display: inline-block;
+        height: 100%;
+      }
+      .CategoryHeader {
+        margin-left: 1px;
+        display: block;
+        margin-top: 20px;
+        color:black;
+background-color: cyan;
+
+
+        font-weight:bolder;
+        font-size:16pt;
+      }
+      .Category .Sub:not(:first-child) {
+        border: 1px solid blue;
+        margin-left: 10px;
+      }
+      .Category .categorycell {
+background-color: red;
+display: inline-block;
+width:40%;
+padding:0px;
+
+      } */
+      body {
+        background-color: rgb(234, 237, 237);
+        left: 0px;
+        top: 0px;
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .logo {
+        height: 10%;
+        padding: 0.5% 4% 0.5%;
+        width: 10%;
+        position: relative;
+      }
+      .menu a {
+        text-decoration: none;
+      }
+      .menu {
+        padding-left: 3.2%;
+        height: 40px;
+        max-width: 100%;
+        background-color: rgb(53, 71, 88);
+        position: static;
+      }
+      header {
+        background-color: rgb(53, 71, 88);
+      }
+      .menu a span {
+        color: rgb(232, 235, 236);
+        margin-top: 10px;
+        top: 6px;
+        font-size: 18pt;
+        width: 0px;
+        position: relative;
+        margin-left: 15px;
+      }
+      .menu a span:hover {
+        border: 1px solid rgb(232, 235, 236);
+      }
+      main {
+        margin-left: 2.5%;
+        width: 95%;
+        color: black;
+      }
+      .cards {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        background-color: rgb(245, 102, 0);
+        text-align: center;
+        color: white;
+        font-size: 20pt;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        position: relative;
+      }
+      .giftguide {
+        background-image: url("assets/bg-image.png");
+        background-size: 95% 65%;
+        background-repeat: repeat;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+      .giftguide h1 {
+        font-size: 28pt;
+      }
+      .category {
+        background-color: white;
+        margin-top: 2%;
+        padding-bottom: 1%;
+        display: inline-block;
+      }
+
+      .category h2 {
+        padding: 0.1%;
+        padding-left: 2%;
+        display: inline-block;
+      }
+      .category a {
+        text-decoration: none;
+        color: rgb(1, 113, 133);
+        font-size: 12pt;
+        font-weight: bold;
+      }
+    
+      .category.large img {
+        height: 500px;
+        width: 22.7%;
+        margin-left: 30px;
+        display: inline;
+        margin-top: 0px;
+        vertical-align: top;
+        border: 1px solid white;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+      .category.small {
+        background-color: white;
+        margin-top: 2%;
+
+        display: inline-block;
+        width: 23.2%;
+
+        margin-left: 30px;
+
+      }
+      .category.small h2 {
+        width: 100%;
+     margin-left:10px;
+
+        margin-bottom: 0px;
+      }
+      .category.small:first-child {
+        margin-left: 0px;
   
-    height:100%;
-   
-}
-header {
-    height:1%;
-    background-color:rgb(34,47,62,255);
-    width:100%;
-    left:0px;
-    position: relative;
+      }
+      .category.small img {
+        width: 100%;
+
+        display: inline-block;
+      }
+      .category.small div {
+        margin-left: 30px;
+        margin-top: 20px;
+        width: 40%;
+        display: inline-block;
  
-}
-.logo {
-height:10%;
-padding:0.5% 4% 0.5%;
-width:10%;
-position: relative;
-}
-.Menu a {
-text-decoration: none;
-}
-.Menu {
- padding-left:3.2%;
- height: 40px;
- max-width:100%;
-    background-color:rgb(53,71,88);
-    position: static;
-  
-}
-.Menu a Span {
-    color:rgb(232,235,236);
-margin-top:10px;
-top:6px;
-font-size: 18pt;
-width:0px;
-position: relative;
-margin-left:15px;
-}
-.Menu a Span:hover {
- border:1px solid rgb(232,235,236);
-}
-main {
-    margin-left:2.5%;
-    width:95%;
-    color:black;
-}
-.Cards {
-    margin-top:2%;
-    margin-bottom:2%;
+      }
+      .category.small a {
+       padding-top: 40px;
+   
+       margin:0px;
+       margin-left: 30px;
 
+    display: inline-block;
+      }
 
-    background-color: rgb(245,102,0);
-text-align: center;
-color:white;
-
-font-size: 20pt;
-
-
-padding-top: 1%;
-padding-bottom: 1%;
-position: relative;
-
-}
-.Gift_Guide {
-    background-image: url("assets/bg-image.png");
-    background-size: 95% 65%;
-background-repeat:repeat;
-padding-top: 2%;
-padding-bottom: 2%;
-position: relative;
+      .category.small span {
+      font-weight: bolder;
+        display: block;
+      }
+      .category.full {
+width:99%;
 text-align:center;
-color:white;
+background-color: transparent;
 
-}
-.Gift_Guide h1 {
+      }
+      .category.full img {
 
-font-size: 28pt;
-}
-
-.Grid {
-    margin:2% 0px 0% 0px;
-    padding:20px;
-    background-color: white;
-  
-   height: 450px;
-   position: relative;
-   text-align: left;
-}
-
-
-
-.Grid div {
 width:100%;
-}
-.Category {
-color:black;
-position: relative;
-text-align:center;
-color:white;
-height:600px;
-margin-top:2%;
-}
-.Category img {
-width:100%;
-height:90%
-}
-.SubHeader {
- color:black;
-height:90%;
-text-align: left;
-padding-left:1%;
-font-size: 16pt;
-font-weight: bold;
+      }
+      .category.full h2 {
+padding:0px;
+margin:0px;
+padding-right:30px;
+      }
+      .Menu.Bottom {
+        text-align: center;
 
-height:20px;
-margin-bottom:60px;
-}
-.SubHeader a {
-    margin-left:10px;
-    font-size: 12pt;
-    text-decoration: none;
-    color:rgb(1,113,133)
-}
+        height: 40px;
+        padding: 0px;
+        background-color: rgb(53, 71, 88);
+      }
+      .Menu.Bottom div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+        width: 100%;
 
-
-
-.ImageArrayDiv {
-    background-color: blue;
-    text-align: left;
-    width:200%;
-}
-.ImageArrayDiv img {
-filter: drop-shadow(12px 2px 2px rgba(225,229,232,0.9));
-margin-left:2%;
-width:23%;
-height:400px;
-border:0px solid black;
-border-radius: 20px;
-margin-top:10px;
-float:left;
-display:inline;
-
-}
-.ImageArrayDiv img:nth-child(1) {
-  margin-left:1%;
-
-}
-
-.Menu.Bottom {
-    text-align: center;
-  
-    height:40px;
-    padding:0px;
-}
-.Menu.Bottom div {
-
-padding-top:10px;
-padding-bottom:10px;
-color:white;
-width:100%;
-
-padding-left:0px;
-
-}
-.Menu.Bottom div a {
-    color:white;
-    text-decoration: underline;
-}
-footer {
-    height:200px;
-    background-color:rgb(34,47,62,255);
-    width:100%;
-    left:0px;
-    position: static;
-    text-align: center;
-}
-footer img {
-height:30%;
-margin-top:5%;
-}
+        padding-left: 0px;
+      }
+      .Menu.Bottom div a {
+        color: white;
+        text-decoration: underline;
+      }
+      footer {
+        height: 200px;
+        background-color: rgb(34, 47, 62, 255);
+        width: 100%;
+        left: 0px;
+        position: static;
+        text-align: center;
+      }
+      footer img {
+        height: 30%;
+        margin-top: 5%;
+      }
     </style>
-</head>
-<body>
-    <div id="Container" class="container">
+  </head>
+  <body>
     <header>
-<img class="logo" src="assets/logo.png">
+      <img class="logo" src="assets/logo.png" />
     </header>
-    <div class="Menu">
-        <a href="#"><Span>All</Span></a>
-        <a href="#"><Span>Today's deals</Span></a>
-        <a href="#"><Span>Customer Service</Span></a>
-        <a href="#"><Span>Registry</Span></a>
-        <a href="#"><Span>Gift Cards</Span></a>
-        <a href="#"><Span>Sell</Span></a>
-     </div>
-<main>
 
-<div class="Cards">
-Shop All Holiday Gift Cards
-</div>
-<div class="Gift_Guide">
-<div>
-<h1>Holiday Gift Guides</h1>
-<h2>Be a go-gifter</h2>
-</div>
-
-             </div>
-<div class="Grid">
- <span class="SubHeader">Find the perfect gift  <a href="#">Shop Now</a></span>
-      
-
-<div class="ImageArrayDiv">
-    <img src="assets/img_1.jpg" alt="Amazon Kindle"> 
-    <img src="assets/img_2.jpg" alt="Vase"> 
-    <img src="assets/img_3.jpg" alt="Smart Watches"> 
-    <img src="assets/img_4.jpg" Alt="Pets"> 
-</div>
-
-</div>
-<div class="Category">
-   <img src="assets/img_9.png">
-   <span class="SubHeader">Play the gifting game<a href="#">Shop gaming</a></span>
- </div>
-<div class="Category">
-        <img src="assets/img_10.png">
-        <span class="SubHeader">The sound of cheer<a href="#">Shop Audio & Accessories</a></span>
-</div>
-
-            </main>
-            <div class="Menu Bottom"><div><a href="#Container">Back to top</a></div></div>
-            <footer><img src="assets/logo.png" alt="Amazon Logo"></footer>
-            
-            </div>
+    <div class="menu">
+      <a href="#"><span>All</span></a>
+      <a href="#"><span>Today's deals</span></a>
+      <a href="#"><span>Customer Service</span></a>
+      <a href="#"><span>Registry</span></a>
+      <a href="#"><span>Gift Cards</span></a>
+      <a href="#"><span>Sell</span></a>
+    </div>
+    <main>
+      <div class="cards">Shop All Holiday Gift Cards</div>
+      <div class="giftguide">
+        <div>
+          <h1>Holiday Gift Guides</h1>
+          <h2>Be a go-gifter</h2>
         </div>
-</body>
+      </div>
+      <div class="category large">
+        <h2>Find the perfect gift</h2>
+        <a href="#">Shop now</a>
+        <div>
+          <img src="assets/img_1.jpg" alt="Amazon Kindle" />
+          <img src="assets/img_2.jpg" alt="Vase" />
+          <img src="assets/img_3.jpg" alt="Smart Watches" />
+          <img src="assets/img_4.jpg" alt="Pets" />
+        </div>
+      </div>
+      <div id="small categories">
+        <div class="category small">
+          <h2>Gaming accessories</h2>
+          <div><img src="assets/img_15.jpg" alt="Headsets" /><span>Headsets</span></div>
+          <div><img src="assets/img_16.jpg" alt="Keyboards" /><span>Keyboards</span></div>
+          <div><img src="assets/img_17.jpg" alt="Computer mice" /><span>Computer mice</span></div>
+          <div><img src="assets/img_18.jpg" alt="Chairs" /><span>Chairs</span></div>
+          <a href="#">See more</a>
+        </div>
+        <div class="category small">
+          <h2>Comfy styles</h2>
+          <div><img src="assets/img_19.jpg" alt="Sweatshirts"/><span>Sweatshirts</span></div>
+          <div><img src="assets/img_20.jpg" alt="Joggers"/><span>Joggers</span></div>
+          <div><img src="assets/img_21.jpg" alt="Cardigans"/><span>Cardigans</span></div>
+          <div><img src="assets/img_22.jpg" alt="Easy tees"/><span>Easy tees</span></div>
+          <a href="#">See more</a>
+        </div>
+        <div class="category small">
+          <h2>Holiday Gifts</h2>
+          <div><img src="assets/img_11.jpg" alt="Electronics"/><span>Electronics</span></div>
+          <div><img src="assets/img_12.jpg" alt="Fashion"/><span>Fashion</span></div>
+          <div><img src="assets/img_13.jpg" alt="Toys"/><span>Toys</span></div>
+          <div><img src="assets/img_14.jpg" alt="Beauty"/><span>Beauty</span></div>
+          <a href="#">Shop all gift guides</a>
+        </div>
+        <div class="category small">
+          <h2>Add joy to their wish list</h2>
+          <div><img src="assets/img_24.jpg" alt="Holiday toy list"/><span>Holiday toy list</span></div>
+          <div><img src="assets/img_25.jpg"  alt="Electronic Gifts"/><span>Electronic Gifts</span></div>
+          <div><img src="assets/img_26.jpg" alt="Home Gifts" /><span>Home Gifts</span></div>
+          <div><img src="assets/img_27.jpg" alt="Fashion Gifts" /><span>Fashion Gifts</span></div>
+          <a href="#">Shop all gift guides</a>
+        </div>
+      </div>
+      <div class="category full">
+<img src="assets/img_9.png"  alt="Gaming Accessories" />
+<h2>Play the gifting game</h2>
+<a href="#" >Shop gaming</a>
+        </div>
+        <div class="category full">
+            <img src="assets/img_10.png" alt="Audio Accessories" />
+            <h2>The sound of cheer</h2>
+            <a href="#" >Shop Audio & Accessories</a>
+                    </div>
+      
+    </main>
+    <div class="Menu Bottom">
+        <div><a href="#menu">Back to top</a></div>
+    </div>
+    <footer><img src="assets/logo.png" alt="Amazon Logo" /></footer>
+
+    <!-- <div id="Container" class="container">
+      <header>
+        <img class="logo" src="assets/logo.png" />
+      </header>
+      <div class="Menu">
+        <a href="#"><span>All</span></a>
+        <a href="#"><span>Today's deals</span></a>
+        <a href="#"><span>Customer Service</span></a>
+        <a href="#"><span>Registry</span></a>
+        <a href="#"><span>Gift Cards</span></a>
+        <a href="#"><span>Sell</span></a>
+      </div>
+      <main>
+        <div class="Cards">Shop All Holiday Gift Cards</div>
+        <div class="Gift_Guide">
+          <div>
+            <h1>Holiday Gift Guides</h1>
+            <h2>Be a go-gifter</h2>
+          </div>
+        </div>
+        <div class="Grid">
+          <span class="SubHeader">Find the perfect gift <a href="#">Shop Now</a></span>
+
+          <div class="ImageArrayDiv">
+            <img src="assets/img_1.jpg" alt="Amazon Kindle" />
+            <img src="assets/img_2.jpg" alt="Vase" />
+            <img src="assets/img_3.jpg" alt="Smart Watches" />
+            <img src="assets/img_4.jpg" alt="Pets" />
+          </div>
+        </div>
+
+        <div class="Category">
+          <div class="Sub">
+            <span class="CategoryHeader">Gaming accessories</span>
+            <span class="categorycell">
+                test
+
+            </span>
+            <span class="categorycell">
+test
+                
+            </span>
+          </div>
+          <div class="Sub">
+            <span class="CategoryHeader">Comfy styles</span> 
+          </div>
+          <div class="Sub">
+            <span class="CategoryHeader">Holiday Gifts</span>
+          </div>
+          <div class="Sub">
+            <span class="CategoryHeader">Add joy to their wish list</span>
+          </div>
+        </div>
+        <div class="Category">
+          <img src="assets/img_9.png" />
+          <span class="SubHeader"
+            >Play the gifting game<a href="#">Shop gaming</a></span
+          >
+        </div>
+        <div class="Category">
+          <img src="assets/img_10.png" />
+          <span class="SubHeader"
+            >The sound of cheer<a href="#">Shop Audio & Accessories</a></span
+          >
+        </div>
+      </main>
+      <div class="Menu Bottom">
+        <div><a href="#Container">Back to top</a></div>
+      </div>
+      <footer><img src="assets/logo.png" alt="Amazon Logo" /></footer>
+    </div> -->
+  </body>
 </html>
