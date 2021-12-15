@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Board</title>
+    <style>
+        body { margin: 0; padding: 0; }
+#Board {
+background-color: red;
+left:50%;
+top:50%;
+width:50%;
+height:80%;
+position:absolute;
+transform:translate(-50%,-50%);
+margin: 0; padding: 0; 
+display:inline-block;
+}
+square {
+background-color:green;
+width:12.5%;
+height:12.5%;
+float: left;
+}
+
+square:nth-child(odd){
+    background-color:rgba(171,144,110,255);
+}
+square:nth-child(even){
+    background-color:white;
+}
+
+
+square span {
+display:none;
+
+}
+  /*Top*/
+square:nth-child(-1n+8) span {
+    display:block;   
+  
+}
+square:nth-child(-1n+8) span:first-child { 
+    position: absolute;
+    bottom:100%;  
+  
+}
+
+
+
+square:nth-child(8n+8) span  {
+display:block;
+
+   /*right*/
+}
+
+square:nth-child(8n+1) span {
+    display:block;
+
+ /*Left*/
+}
+square:nth-last-child(-n+7) span {
+    display:block;
+     /*Bottom*/
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="Board">
+        <square><span>A</span><span>1</span></square>	<square><span>B</span></square>	<square><span>C</span></square>	<square><span>D</span></square>	<square><span>E</span></square>	<square><span>F</span></square>	<square><span>G</span></square>	<square><span>H</span><span>1</span></square>
+        <square><span>2</span></square>	<square><span>B</span><span>2</span></square>	<square><span>C</span><span>2</span></square>	<square><span>D</span><span>2</span></square>	<square><span>E</span><span>2</span></square>	<square><span>F</span><span>2</span></square>	<square><span>G</span><span>2</span></square>	<square><span>2</span></square>
+        <square><span>3</span></square>	<square><span>B</span><span>3</span></square>	<square><span>C</span><span>3</span></square>	<square><span>D</span><span>3</span></square>	<square><span>E</span><span>3</span></square>	<square><span>F</span><span>3</span></square>	<square><span>G</span><span>3</span></square>	<square><span>3</span></square>
+        <square><span>4</span></square>	<square><span>B</span><span>4</span></square>	<square><span>C</span><span>4</span></square>	<square><span>D</span><span>4</span></square>	<square><span>E</span><span>4</span></square>	<square><span>F</span><span>4</span></square>	<square><span>G</span><span>4</span></square>	<square><span>4</span></square>
+        <square><span>5</span></square>	<square><span>B</span><span>5</span></square>	<square><span>C</span><span>5</span></square>	<square><span>D</span><span>5</span></square>	<square><span>E</span><span>5</span></square>	<square><span>F</span><span>5</span></square>	<square><span>G</span><span>5</span></square>	<square><span>5</span></square>
+        <square><span>6</span></square>	<square><span>B</span><span>6</span></square>	<square><span>C</span><span>6</span></square>	<square><span>D</span><span>6</span></square>	<square><span>E</span><span>6</span></square>	<square><span>F</span><span>6</span></square>	<square><span>G</span><span>6</span></square>	<square><span>6</span></square>
+        <square><span>7</span></square>	<square><span>B</span><span>7</span></square>	<square><span>C</span><span>7</span></square>	<square><span>D</span><span>7</span></square>	<square><span>E</span><span>7</span></square>	<square><span>F</span><span>7</span></square>	<square><span>G</span><span>7</span></square>	<square><span>7</span></square>
+        <square><span>A</span><span>8</span></square>	<square><span>B</span></square>	<square><span>C</span></square>	<square><span>D</span></square>	<square><span>E</span></square>	<square><span>F</span></square>	<square><span>G</span></square>	<square><span>H</span><span>8</span></square>
+        
+    </div>
+
+
+
+</body>
+</html>
