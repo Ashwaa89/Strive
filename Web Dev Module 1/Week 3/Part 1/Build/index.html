@@ -6,85 +6,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Board</title>
     <style>
-        body { margin: 0; padding: 0; }
+        body { margin: 0; padding: 0; 
+          
+   
+        
+        }
+h1 {
+left:50%;
+position: absolute;
+transform:translate(-50%,0%);
+
+}
+  
 #Board {
-background-color: red;
+   
+width:100%;
+height:100%;
+position: absolute;
+    width:30%;
+height:50%;
 left:50%;
 top:50%;
-width:50%;
-height:80%;
-position:absolute;
-transform:translate(-50%,-50%);
 margin: 0; padding: 0; 
 display:inline-block;
+transform:translate(-50%,-50%);
 }
-square {
-background-color:green;
+div {
+
 width:12.5%;
 height:12.5%;
 float: left;
+background-color:black;
 }
 
-square:nth-child(odd){
-    background-color:rgba(171,144,110,255);
-}
-square:nth-child(even){
-    background-color:white;
+/*Rows even columns*/
+
+
+#Board div:hover {
+    background-color:red;
 }
 
 
-square span {
-display:none;
-
+#Board div:nth-child(-n + 8):nth-child(even),
+div:nth-child(n + 9):nth-child(-n + 16):nth-child(odd),
+div:nth-child(n + 17):nth-child(-n + 24):nth-child(even),
+div:nth-child(n + 25):nth-child(-n + 32):nth-child(odd),
+div:nth-child(n + 33):nth-child(-n + 40):nth-child(even),
+div:nth-child(n + 41):nth-child(-n + 48):nth-child(odd),
+div:nth-child(n + 49):nth-child(-n + 56):nth-child(even),
+div:nth-child(n + 57):nth-child(-n + 64):nth-child(odd) {
+   background-color:rgba(171,144,110,255);
 }
-  /*Top*/
-square:nth-child(-1n+8) span {
-    display:block;   
+
+
+
+
+#Board div span {
+    position: relative;
+    display:inline-block;
+    opacity:0;
+    }
+
+/*Top*/
+#Board div:nth-child(-1n+8) span:first-child { 
+   opacity:1;   
+    bottom:50%;  
+    left:50%;
   
+  transform:translate(-10%,0);
 }
-square:nth-child(-1n+8) span:first-child { 
-    position: absolute;
-    bottom:100%;  
+ /*Left Numbers*/
+ #Board div:nth-child(8n+1) span:last-child {
+ opacity:1;
+right:60%;
+top:50%;  
+transform:translate(0,-50%);
+}
+
+
+/*Right Numbers*/
+#Board div:nth-child(8n) span:last-child { 
+opacity:1;   
+top:50%;  
+left:90%;
+transform:translate(0,-50%);
+}
+
+/*Bottom Letters*/
+#Board div:nth-last-child(-n+7) span:first-child { 
+    opacity:1;  
+      top:100%;
+    left:30%;
+} 
+/*Bottom Left Letter*/
+#Board div:nth-last-child(8) span:first-child { 
+    opacity:1;  
+      top:100%;
+  left:30%;
+
   
-}
 
-
-
-square:nth-child(8n+8) span  {
-display:block;
-
-   /*right*/
-}
-
-square:nth-child(8n+1) span {
-    display:block;
-
- /*Left*/
-}
-square:nth-last-child(-n+7) span {
-    display:block;
-     /*Bottom*/
-}
-
-
-
-
+} 
 
 
 
     </style>
 </head>
 <body>
-    <div id="Board">
-        <square><span>A</span><span>1</span></square>	<square><span>B</span></square>	<square><span>C</span></square>	<square><span>D</span></square>	<square><span>E</span></square>	<square><span>F</span></square>	<square><span>G</span></square>	<square><span>H</span><span>1</span></square>
-        <square><span>2</span></square>	<square><span>B</span><span>2</span></square>	<square><span>C</span><span>2</span></square>	<square><span>D</span><span>2</span></square>	<square><span>E</span><span>2</span></square>	<square><span>F</span><span>2</span></square>	<square><span>G</span><span>2</span></square>	<square><span>2</span></square>
-        <square><span>3</span></square>	<square><span>B</span><span>3</span></square>	<square><span>C</span><span>3</span></square>	<square><span>D</span><span>3</span></square>	<square><span>E</span><span>3</span></square>	<square><span>F</span><span>3</span></square>	<square><span>G</span><span>3</span></square>	<square><span>3</span></square>
-        <square><span>4</span></square>	<square><span>B</span><span>4</span></square>	<square><span>C</span><span>4</span></square>	<square><span>D</span><span>4</span></square>	<square><span>E</span><span>4</span></square>	<square><span>F</span><span>4</span></square>	<square><span>G</span><span>4</span></square>	<square><span>4</span></square>
-        <square><span>5</span></square>	<square><span>B</span><span>5</span></square>	<square><span>C</span><span>5</span></square>	<square><span>D</span><span>5</span></square>	<square><span>E</span><span>5</span></square>	<square><span>F</span><span>5</span></square>	<square><span>G</span><span>5</span></square>	<square><span>5</span></square>
-        <square><span>6</span></square>	<square><span>B</span><span>6</span></square>	<square><span>C</span><span>6</span></square>	<square><span>D</span><span>6</span></square>	<square><span>E</span><span>6</span></square>	<square><span>F</span><span>6</span></square>	<square><span>G</span><span>6</span></square>	<square><span>6</span></square>
-        <square><span>7</span></square>	<square><span>B</span><span>7</span></square>	<square><span>C</span><span>7</span></square>	<square><span>D</span><span>7</span></square>	<square><span>E</span><span>7</span></square>	<square><span>F</span><span>7</span></square>	<square><span>G</span><span>7</span></square>	<square><span>7</span></square>
-        <square><span>A</span><span>8</span></square>	<square><span>B</span></square>	<square><span>C</span></square>	<square><span>D</span></square>	<square><span>E</span></square>	<square><span>F</span></square>	<square><span>G</span></square>	<square><span>H</span><span>8</span></square>
-        
+  <h1>Chess Board</h1>
+    
+   <div id="Board">
+    <div><span>A</span><span>1</span></div><div><span>B</span><span>1</span></div>	<div><span>C</span><span>1</span></div>	<div><span>D</span><span>1</span></div>	<div><span>E</span><span>1</span></div>	<div><span>F</span><span>1</span></div>	<div><span>G</span><span>1</span></div>	<div><span>H</span><span>1</span></div>
+    <div><span>A</span><span>2</span></div>	<div><span>B</span><span>2</span></div>	<div><span>C</span><span>2</span></div>	<div><span>D</span><span>2</span></div>	<div><span>E</span><span>2</span></div>	<div><span>F</span><span>2</span></div>	<div><span>G</span><span>2</span></div>	<div><span>H</span><span>2</span></div>
+    <div><span>A</span><span>3</span></div>	<div><span>B</span><span>3</span></div>	<div><span>C</span><span>3</span></div>	<div><span>D</span><span>3</span></div>	<div><span>E</span><span>3</span></div>	<div><span>F</span><span>3</span></div>	<div><span>G</span><span>3</span></div>	<div><span>H</span><span>3</span></div>
+    <div><span>A</span><span>4</span></div>	<div><span>B</span><span>4</span></div>	<div><span>C</span><span>4</span></div>	<div><span>D</span><span>4</span></div>	<div><span>E</span><span>4</span></div>	<div><span>F</span><span>4</span></div>	<div><span>G</span><span>4</span></div>	<div><span>H</span><span>4</span></div>
+    <div><span>A</span><span>5</span></div>	<div><span>B</span><span>5</span></div>	<div><span>C</span><span>5</span></div>	<div><span>D</span><span>5</span></div>	<div><span>E</span><span>5</span></div>	<div><span>F</span><span>5</span></div>	<div><span>G</span><span>5</span></div>	<div><span>H</span><span>5</span></div>
+    <div><span>A</span><span>6</span></div>	<div><span>B</span><span>6</span></div>	<div><span>C</span><span>6</span></div>	<div><span>D</span><span>6</span></div>	<div><span>E</span><span>6</span></div>	<div><span>F</span><span>6</span></div>	<div><span>G</span><span>6</span></div>	<div><span>H</span><span>6</span></div>
+    <div><span>A</span><span>7</span></div>	<div><span>B</span><span>7</span></div>	<div><span>C</span><span>7</span></div>	<div><span>D</span><span>7</span></div>	<div><span>E</span><span>7</span></div>	<div><span>F</span><span>7</span></div>	<div><span>G</span><span>7</span></div>	<div><span>H</span><span>7</span></div>
+    <div><span>A</span><span>8</span></div>	<div><span>B</span><span>8</span></div>	<div><span>C</span><span>8</span></div>	<div><span>D</span><span>8</span></div>	<div><span>E</span><span>8</span></div>	<div><span>F</span><span>8</span></div>	<div><span>G</span><span>8</span></div>	<div><span>H</span><span>8</span></div>
+    
     </div>
 
 
