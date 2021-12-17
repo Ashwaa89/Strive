@@ -1,0 +1,150 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+.pintrest-card {
+
+
+width:200px;
+height:400px;
+position:relative;
+left:0;
+right:0;
+margin:auto;
+padding:0;
+
+white-space: nowrap;
+overflow: hidden;
+
+}
+
+.pintrest-card img {
+
+width:100%;
+height:100%;
+object-fit:fill;
+border-radius:10px;
+position:absolute;
+margin:0;
+
+}
+.pintrest-card-save {
+    position:absolute;
+    /* top: 5%;*/
+    top:-7%;
+    right:5%; 
+    width: 20%;
+    height: 7%;
+    z-index:2;
+    background-color: red;
+    border-radius: 20px;
+    text-align:center;
+    align-content: center;
+    color:white;
+    display: black;
+   transition: top 0.5s;
+    
+}
+.pintrest-card:hover .pintrest-card-save {
+    top:5%;
+
+
+}
+.pintrest-card-save span {
+font-size:10px;
+
+    position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-55%);
+    display:block;
+cursor:pointer;
+   
+   
+
+
+   
+}
+.pintrest-card-actions {
+height:6%;
+margin-bottom:5px;
+
+bottom:-20%;
+bottom:0%;
+
+position:absolute;
+width:100%;
+transition: bottom 0.5s;
+
+}
+.pintrest-card:hover .pintrest-card-actions {
+ 
+    bottom:0%;
+}
+.pintrest-card-actions-share {
+width:50%;
+height:100%;
+left:5%;
+position: absolute;
+background-color:snow;
+white-space: nowrap;
+overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight:bold;
+  font-size:1rem;
+  padding-left:5%;
+  border-radius: 10px;
+cursor: pointer;
+}
+
+
+.pintrest-card-actions-upload {
+    width:10%;
+    height:100%;
+    right:5%;
+    position: absolute;
+    background-color:snow;
+    white-space: nowrap;
+    overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight:bold;
+      font-size:1rem;
+      padding-left:5%;
+      border-radius: 1px;
+    cursor: pointer;
+    background-color: tomato;
+}
+.pintrest-card-actions-upload img {
+left:50%;
+top:50%;
+transform:translate(-50%,-55%);
+width:50%;
+height:70%;
+object-fit: fill;
+
+position: absolute;
+
+
+}
+
+/* .pintrest-card:before {
+
+  
+    position:absolute;
+    top: 5%;
+right:10px;
+    bottom: 0;
+
+    z-index:1;
+    background-color: red;
+    text-align:center;
+  
+    display:block;
+
+    width: 20%;
+    height: 7%;
+border-radius: 20px;
+
+
+} */
