@@ -3,7 +3,7 @@ body {
     padding:0;
 }
 
-.pintrest-card {
+.pintrest-card  {
 
 
 width:200px;
@@ -17,9 +17,10 @@ padding:0;
 white-space: nowrap;
 overflow: hidden;
 
+
 }
 
-.pintrest-card img {
+.pintrest-card-background {
 
 width:100%;
 height:100%;
@@ -31,7 +32,7 @@ margin:0;
 }
 .pintrest-card-save {
     position:absolute;
-    /* top: 5%;*/
+
     top:-7%;
     right:5%; 
     width: 20%;
@@ -42,13 +43,13 @@ margin:0;
     text-align:center;
     align-content: center;
     color:white;
-    display: black;
-   transition: top 0.5s;
+    transition: all 2s;
+
     
 }
 .pintrest-card:hover .pintrest-card-save {
     top:5%;
-
+    /* transition: top 0.5s ease-in; */
 
 }
 .pintrest-card-save span {
@@ -69,18 +70,18 @@ cursor:pointer;
 .pintrest-card-actions {
 height:6%;
 margin-bottom:5px;
+top:100%;
 
-bottom:-20%;
-bottom:0%;
 
 position:absolute;
 width:100%;
-transition: bottom 0.5s;
+transition: all 2s;
+
 
 }
-.pintrest-card:hover .pintrest-card-actions {
- 
-    bottom:0%;
+.pintrest-card:hover .pintrest-card-actions { 
+    top:90%;
+
 }
 .pintrest-card-actions-share {
 width:50%;
@@ -100,33 +101,50 @@ cursor: pointer;
 
 
 .pintrest-card-actions-upload {
-    width:10%;
+    width:15%;
     height:100%;
-    right:5%;
     position: absolute;
     background-color:snow;
-    white-space: nowrap;
-    overflow: hidden;
-      text-overflow: ellipsis;
-      font-weight:bold;
-      font-size:1rem;
-      padding-left:5%;
-      border-radius: 1px;
-    cursor: pointer;
-    background-color: tomato;
+
+object-fit: cover;
+    right:20%;
+border-radius: 50%;
+
 }
 .pintrest-card-actions-upload img {
-left:50%;
-top:50%;
-transform:translate(-50%,-55%);
-width:50%;
-height:70%;
-object-fit: fill;
+width:40%;
+height:55%;
 
-position: absolute;
+position:absolute;
+top: 0;
+left:0;
+bottom: 0;
+right:0;
+margin:auto;
+}
+.pintrest-card-actions-more {
+    width:15%;
+    height:100%;
+    position: absolute;
+    background-color:snow;
+border-radius:50%;
 
+    right:3%;
+
+text-align: center;
+font-size:19pt;
 
 }
+.pintrest-card-actions-more span {
+
+position: absolute;
+display:inline-block;
+left:20%;
+top:-36%;
+margin:auto;
+display:flex;
+}
+
 
 /* .pintrest-card:before {
 
