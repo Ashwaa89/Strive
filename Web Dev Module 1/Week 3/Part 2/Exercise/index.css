@@ -64,7 +64,7 @@ margin:0;
 }
 .pintrest-card:hover .pintrest-card-save {
     top:5%;
-    /* transition: top 0.5s ease-in; */
+
 
 }
 .pintrest-card-save span {
@@ -124,6 +124,7 @@ cursor: pointer;
 object-fit: cover;
     right:20%;
 border-radius: 50%;
+cursor: pointer;
 
 }
 .pintrest-card-actions-upload img {

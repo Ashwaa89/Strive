@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Holiday Gift Guides</title>
+    <style>
+  
+      body {
+        background-color: rgb(234, 237, 237);
+        left: 0px;
+        top: 0px;
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .logo {
+        height: 10%;
+        padding: 0.5% 4% 0.5%;
+        width: 10%;
+        position: relative;
+      }
+      .menu a {
+        text-decoration: none;
+      }
+      .menu {
+        padding-left: 3.2%;
+        height: 40px;
+        max-width: 100%;
+        background-color: rgb(53, 71, 88);
+        position: sticky;
+        top:0%;
+        display:block;
+        z-index: 1;
+      }
+      header {
+        background-color: rgb(53, 71, 88);
+      }
+      .menu a span {
+        color: rgb(232, 235, 236);
+        margin-top: 10px;
+        top: 6px;
+        font-size: 18pt;
+        width: 0px;
+        position: relative;
+        margin-left: 15px;
+      }
+      .menu a span:hover {
+        border: 1px solid rgb(232, 235, 236);
+      }
+      main {
+        margin-left: 2.5%;
+        width: 95%;
+        color: black;
+      }
+      .cards {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        background-color: rgb(245, 102, 0);
+        text-align: center;
+        color: white;
+        font-size: 20pt;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        position: relative;
+      }
+      .giftguide {
+        background-image: url("assets/bg-image.png");
+        background-size: 95% 65%;
+        background-repeat: repeat;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+      .giftguide h1 {
+        font-size: 28pt;
+      }
+      .category {
+        background-color: white;
+        margin-top: 2%;
+        padding-bottom: 1%;
+        display: inline-block;
+      }
+
+      .category h2 {
+        padding: 0.1%;
+        padding-left: 2%;
+        display: inline-block;
+      }
+      .category a {
+        text-decoration: none;
+        color: rgb(1, 113, 133);
+        font-size: 12pt;
+        font-weight: bold;
+      }
+      .category.large {
+        position: relative;
+      }
+      .category.large.div {
+        height: 500px;
+        width: 23.5%;
+        margin-left: 10px;
+        display: inline;
+        margin-top: 0px;
+        vertical-align: top;
+        border: 1px solid white;
+     
+
+        display:inline-block;
+
+      }
+      .category.large.div:hover   .category.large.favourite  {
+bottom:80%;
+opacity:1;
+z-index: 6;
+height:10%;
+
+      }
+      
+      .category.large.img {
+      
+        width:100%;
+        height:100%;
+        border-radius: 20px;
+        z-index:0;
+        
+      }
+
+          
+      .category.large.favourite {
+background-color: transparent;
+border:0px;
+height:10px;
+position: absolute;
+transition: top 2s;
+width:15%;
+cursor: pointer;
+
+/* top:5%; */
+bottom:100%;
+opacity:0;
+right:5%;
+z-index:-1;
+transition: bottom 1s,opacity 0.1s 0.1s;
+
+}
+.category.large.div:hover .category.large.cart {
+  top:85%;
+opacity:1;
+z-index:2;
+cursor: pointer;
+
+}
+.category.large.div:hover::before   {
+content:"";
+background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%);
+height:100%;
+width:100%;
+position:absolute;
+z-index:1;
+}
+
+
+.category.large.cart {
+background-color: rgb(1, 113, 133);
+border:0px;
+height:10px;
+position: absolute;
+
+width:150px;
+z-index:2;
+left:50%;
+width:80%;
+height:8%;
+/* bottom:5%; */
+top:90%;
+transform: translateX(-50%);
+padding:0;
+margin:0;
+border-radius:10px;
+text-align: center;
+color:white;
+padding-top:10px;
+opacity:0;
+transition: top 1s,opacity 0.1s 0.1s ease-in;
+z-index:-1;
+text-overflow: clip;
+}
+.category.large.cart img{
+  height:60%;
+
+position: relative;
+display: inline-block;
+
+transform: translateX(-25%);
+}
+.category.large.cart span {
+  height:50%;
+left:25px;
+top:-5px;
+position: relative;
+display: inline-block;
+
+transform: translateX(-25%);
+
+
+
+}
+
+      .category.small {
+        background-color: white;
+        margin-top: 2%;
+
+        display: inline-block;
+        width: 23.2%;
+
+        margin-left: 30px;
+
+      }
+      .category.small h2 {
+        width: 100%;
+     margin-left:10px;
+
+        margin-bottom: 0px;
+      }
+      .category.small:first-child {
+        margin-left: 0px;
+  
+      }
+      .category.small img {
+        width: 100%;
+
+        display: inline-block;
+      }
+      .category.small div {
+        margin-left: 30px;
+        margin-top: 20px;
+        width: 40%;
+        display: inline-block;
+ 
+      }
+      .category.small a {
+       padding-top: 40px;
+   
+       margin:0px;
+       margin-left: 30px;
+
+    display: inline-block;
+      }
+
+      .category.small span {
+      font-weight: bolder;
+        display: block;
+      }
+      .category.full {
+width:99%;
+text-align:center;
+background-color: transparent;
+
+      }
+      .category.full img {
+
+width:100%;
+      }
+      .category.full h2 {
+padding:0px;
+margin:0px;
+padding-right:30px;
+      }
+      .Menu.Bottom {
+        text-align: center;
+
+        height: 40px;
+        padding: 0px;
+        background-color: rgb(53, 71, 88);
+      }
+      .Menu.Bottom div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+        width: 100%;
+
+        padding-left: 0px;
+      }
+      .Menu.Bottom div a {
+        color: white;
+        text-decoration: underline;
+      }
+      footer {
+        height: 200px;
+        background-color: rgb(34, 47, 62, 255);
+        width: 100%;
+        left: 0px;
+        position: static;
+        text-align: center;
+      }
+      footer img {
+        height: 30%;
+        margin-top: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="top">
+      <img class="logo" src="assets/logo.png" />
+    </header>
+
+    <div class="menu" >
+      <a href="#"><span>All</span></a>
+      <a href="#"><span>Today's deals</span></a>
+      <a href="#"><span>Customer Service</span></a>
+      <a href="#"><span>Registry</span></a>
+      <a href="#"><span>Gift Cards</span></a>
+      <a href="#"><span>Sell</span></a>
+    </div>
+    <main>
+ 
+      <div class="cards">Shop All Holiday Gift Cards</div>
+      <div class="giftguide">
+        <div>
+          <h1>Holiday Gift Guides</h1>
+          <h2>Be a go-gifter</h2>
+        </div>
+      </div>
+      <div class="category large">
+        <h2>Find the perfect gift</h2>
+        <a href="#">Shop now</a>
+        <div>
+         <div class="category large div"><img class="category large favourite" src="https://i.ibb.co/N34TThW/Heart.gif" /><img class="category large img" src="assets/img_1.jpg" alt="Amazon Kindle" /><div class="category large cart"><img src="https://i.ibb.co/BnGPLmB/Cart.gif"/><span>Add to cart</span></div></div>
+         <div class="category large div"><img class="category large favourite" src="https://i.ibb.co/N34TThW/Heart.gif" /><img class="category large img" src="assets/img_2.jpg" alt="Vase" /><div class="category large cart"><img src="https://i.ibb.co/BnGPLmB/Cart.gif"/><span>Add to cart</span></div></div>
+          <div class="category large div"><img class="category large favourite" src="https://i.ibb.co/N34TThW/Heart.gif" /><img  class="category large img" src="assets/img_3.jpg" alt="Smart Watches" /><div class="category large cart"><img src="https://i.ibb.co/BnGPLmB/Cart.gif"/><span>Add to cart</span></div></div>
+            <div class="category large div"><img class="category large favourite" src="https://i.ibb.co/N34TThW/Heart.gif" /><img  class="category large img" src="assets/img_4.jpg" alt="Pets" /><div class="category large cart"><img src="https://i.ibb.co/BnGPLmB/Cart.gif"/><span>Add to cart</span></div></div>
+        </div>
+      </div>
+
+      <div id="small categories">
+        <div class="category small">
+          <h2>Gaming accessories</h2>
+          <div><img src="assets/img_15.jpg" alt="Headsets" /><span>Headsets</span></div>
+          <div><img src="assets/img_16.jpg" alt="Keyboards" /><span>Keyboards</span></div>
+          <div><img src="assets/img_17.jpg" alt="Computer mice" /><span>Computer mice</span></div>
+          <div><img src="assets/img_18.jpg" alt="Chairs" /><span>Chairs</span></div>
+          <a href="#">See more</a>
+        </div>
+        <div class="category small">
+          <h2>Comfy styles</h2>
+          <div><img src="assets/img_19.jpg" alt="Sweatshirts"/><span>Sweatshirts</span></div>
+          <div><img src="assets/img_20.jpg" alt="Joggers"/><span>Joggers</span></div>
+          <div><img src="assets/img_21.jpg" alt="Cardigans"/><span>Cardigans</span></div>
+          <div><img src="assets/img_22.jpg" alt="Easy tees"/><span>Easy tees</span></div>
+          <a href="#">See more</a>
+        </div>
+        <div class="category small">
+          <h2>Holiday Gifts</h2>
+          <div><img src="assets/img_11.jpg" alt="Electronics"/><span>Electronics</span></div>
+          <div><img src="assets/img_12.jpg" alt="Fashion"/><span>Fashion</span></div>
+          <div><img src="assets/img_13.jpg" alt="Toys"/><span>Toys</span></div>
+          <div><img src="assets/img_14.jpg" alt="Beauty"/><span>Beauty</span></div>
+          <a href="#">Shop all gift guides</a>
+        </div>
+        <div class="category small">
+          <h2>Add joy to their wish list</h2>
+          <div><img src="assets/img_24.jpg" alt="Holiday toy list"/><span>Holiday toy list</span></div>
+          <div><img src="assets/img_25.jpg"  alt="Electronic Gifts"/><span>Electronic Gifts</span></div>
+          <div><img src="assets/img_26.jpg" alt="Home Gifts" /><span>Home Gifts</span></div>
+          <div><img src="assets/img_27.jpg" alt="Fashion Gifts" /><span>Fashion Gifts</span></div>
+          <a href="#">Shop all gift guides</a>
+        </div>
+      </div>
+      <div class="category full">
+<img src="assets/img_9.png"  alt="Gaming Accessories" />
+<h2>Play the gifting game</h2>
+<a href="#" >Shop gaming</a>
+        </div>
+        <div class="category full">
+            <img src="assets/img_10.png" alt="Audio Accessories" />
+            <h2>The sound of cheer</h2>
+            <a href="#" >Shop Audio & Accessories</a>
+                    </div>
+      
+    </main>
+    <div class="Menu Bottom">
+        <div><a href="#top">Back to top</a></div>
+    </div>
+    <footer><img src="assets/logo.png" alt="Amazon Logo" /></footer>
+
+  </body>
+</html>
