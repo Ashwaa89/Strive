@@ -1,0 +1,144 @@
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+#colour-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom:20px;
+}
+
+#products {
+  display: flex;
+
+  width: 90%;
+  left: 0;
+  margin: auto;
+  position: relative;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+
+  margin: auto;
+  left: 0;
+  width: 33%;
+  text-align: center;
+}
+.product-image img {
+    transition: all 1s ease-in-out;
+    border:1px solid black;
+    width: 50%;
+
+  left: 0;
+}
+.product-title span {
+transition:all 1s ease-in-out;
+
+}
+.product-image > .round {
+  border-radius: 50%;
+
+  
+  opacity:1;
+}
+
+.product-image > .square {
+    border-radius: 0;
+    opacity:0.5;
+   
+  }
+  .product-title {
+      display: flex;
+      flex-direction: column;
+  }
+
+.highlightlink {
+   background-color: tomato; 
+  }
+messageboard {
+  position: relative;
+  display: flex;
+  height: 25vh;
+border:1px solid black;
+  width: 90%;
+  left: 0;
+  margin: auto;
+background-color:teal;
+color:white;
+  margin-top: 2%;
+}
+
+.newmessage {
+ 
+  width: 20%;
+  display:flex;
+  flex-direction: column;
+}
+.newmessage button {
+    height:20%;
+    width:100%;
+    position:relative;
+    display:block;
+    background-color: transparent;
+    color:white;
+    border:1px solid white;
+}
+
+#newmessagetext {
+  height: 80%;
+  width: 100%;
+  resize: none;
+  display: block;
+  position: relative;
+
+  padding: 0;
+}
+.board {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.board-item {
+border:1px solid white;
+  width: 100%;
+  width: 50%;
+  left: 0;
+  margin-left: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  transform: translateX(-50%);
+  top: 0;
+  display: block;
+  position: relative;
+}
+
+footer {
+  position: relative;
+  top: 82%;
+
+  
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  flex-direction:column;
+
+  
+
+}
+footer span {
+  position: relative;
+
+  word-break: break-all;
+  width: 20%;
+  display: inline-block;
+  width:100%;
+}
+#spoofbutton {
+    width:20%;
+    margin:auto;
+margin-top:10px;
+}
