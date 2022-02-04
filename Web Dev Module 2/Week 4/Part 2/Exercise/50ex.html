@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<head>
+  <style>
+      /* 11, */
+body{
+
+width:50%;
+left:0;
+margin:auto;
+
+}
+ /* 12, */
+h1 { 
+  text-align: center;
+}
+
+/*13, */
+a {
+  color:#fb4d46
+}
+
+
+td {
+  vertical-align:top;
+padding:10px;
+}
+
+/*14, */
+.cellimage {
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  border:1px dotted red;
+}
+/*15, */
+table {
+  border:1px solid black;
+  border-radius:20px;
+  border-collapse: collapse; 
+}
+/*16, */ 
+p {
+  margin:10px;
+}
+/*17,*/
+.custom {
+font-size:18pt;
+font-weight: 700;
+}
+/*18,*/
+.hide {
+  display:none;
+}
+/*19,*/
+td {
+  border: 1px solid green;
+  border-radius:20px;
+}
+/*20,*/
+tr {
+  border: 2px dotted red ;
+}
+
+.divider {
+  width:100%;
+  height:0px;
+border:1px solid black;
+}
+.bk {
+  background-color:purple;
+}
+.pinkborder {
+  border:5px solid pink;
+}
+  </style>
+  <script>
+    window.onload = function() {  question31_41();question44();question46();question48(); question50();}
+let x = "John"
+let y = "Doe"
+console.log('21,',x !== y);
+
+let user = {name : 'Ashley',surname : 'Morgan',email: 'email@gmail.com'}
+console.log('22,',user)
+
+delete user.email
+console.log('23,',user)
+
+let ar = ['Item1','Item2','Item3','Item4','Item5','Item6','Item7','Item8','Item9','Item10']
+console.log('24,',ar)
+
+for (let item of ar) {
+console.log('25,',item)
+}
+let rndar = []
+for (let i=0;i<100;i++) {  
+  rndar.push(Math.random());
+}
+console.log('26,',rndar)
+
+function Getmaxmin() {
+return {max:  Math.max(...rndar),min: Math.min(...rndar)}
+}
+console.log('27,',Getmaxmin())
+
+let parentar = []
+for (let i = 0;i<= 5;i++) {
+  let childar = []
+  for (let ii=0;ii<10;ii++) {  
+    childar.push(Math.random());
+}
+parentar.push(childar)
+}
+console.log('28,',parentar)
+
+
+function getlongest(ar1,ar2) {
+return ar1.length > ar2.length ? ar1 : ar2
+}
+console.log('29,',getlongest([1,2,3],[1,2]))
+
+function getgreatestsum(ar1,ar2) {
+  return eval(ar1.join('+')) > eval(ar2.join('+')) ? ar1 : ar2;
+
+}
+console.log('30,',getgreatestsum([1,2,3],[8,9]))
+
+function question31_41() {
+  const container = document.querySelector('#container')
+console.log('31,',container)
+
+const tablecells = document.querySelectorAll('td')
+console.log('32,',tablecells)
+
+for (let cell of tablecells) {
+  console.log('33,',cell.innerText)
+}
+
+function changeheader() {
+  document.querySelector('h1').innerHTML = 'New header'
+  return   document.querySelector('h1').innerHTML
+}
+console.log('34,',changeheader())
+
+function addrow() {
+  let row = document.createElement('tr');
+  for (let i = 0;i< document.querySelector('tr').querySelectorAll('td').length;i++){
+    let td = document.createElement('td');
+    td.innerText = 'Row ' + (document.querySelectorAll('tr').length + 1) + ' Cell ' + (i + 1) + ' *';
+    row.appendChild(td);
+  }
+document.querySelector('table').appendChild(row);
+return row;
+ 
+}
+console.log('35,',addrow())
+
+function settrclass() {
+  for (let row of document.querySelectorAll('tr')) {
+    row.classList.toggle('test');
+  }
+  return document.querySelectorAll('tr');
+  }
+  console.log('36,',settrclass())
+
+  function setlinkbk() {
+    for (let link of document.querySelectorAll('a')) {
+      link.style.backgroundColor = 'red';
+  }
+  return document.querySelectorAll('a');
+  }
+  console.log('37,',setlinkbk())
+
+
+  console.log('38,','Page Loaded')
+
+  function addtolist(int) {
+    const ul = document.querySelector('ul');
+    const newitems = [];
+    let len = ul.querySelectorAll('li').length + 1;
+for (let i = 0;i< int;i++) {
+let li = document.createElement('li')
+li.innerText = 'Item ' + (len + i) + ' *';
+ul.appendChild(li)
+newitems.push(li)
+}
+return newitems;
+}
+
+console.log('39,',addtolist(10))
+
+function emptylist(list) {
+list.innerHTML = '';
+return list;
+}
+console.log('40,', emptylist(document.querySelector('ol')))
+
+
+
+for (let link of document.querySelectorAll('a')) {
+link.addEventListener('mouseenter',function(e) {
+console.log('41,',e.target.href)
+})
+}
+}
+console.log('42,')
+function hideimgs(e) {
+for (let img of document.querySelectorAll('img')) {
+  img.classList.toggle('hide');
+ e.innerText = img.classList.contains('hide') ? 'Show Images' : 'Hide Images';
+}
+}
+console.log('43,')
+function hidetable(e) {
+ document.querySelector('table').classList.toggle('hide');
+ e.innerText =  document.querySelector('table').classList.contains('hide') ? 'Show Table' : 'Hide Table';
+}
+
+
+function question44() {
+  // see < / script> for call to this//
+  function sumtable() {
+let res = 0;
+for (cell of  document.querySelectorAll('td')) {
+for (let value of cell.innerHTML.replace('Row', "").replace('Cell', "").split(" ")) {
+ res += !isNaN(parseInt(value)) ? parseInt(value) : 0;
+ }
+}
+return res;
+}
+console.log('44,',sumtable())
+}
+
+
+'45,'
+function trimheader(e) {
+  e.innerText = e.innerText.substring(0, e.innerText.length - 1)
+}
+
+function question46() { 
+
+  '46,'
+for (let cell of document.querySelectorAll('td')) {
+cell.addEventListener('click',function() {
+cell.classList.toggle('bk')
+})
+}
+}
+
+'47,'
+function deletecell() {
+let cell = document.querySelectorAll('td')[Math.round(Math.random() * (document.querySelectorAll('td').length-1))]
+cell.parentElement.removeChild(cell)
+}
+
+function question48() { 
+
+  '48,'
+for (let cell of document.querySelectorAll('td')) {
+cell.addEventListener('mouseenter',function() {
+cell.classList.toggle('pinkborder');
+})
+}
+'49,'
+const newtable = document.createElement('table')
+for (let r = 0;r<= 4;r++) {
+let row = document.createElement('tr')
+newtable.appendChild(row)
+for (let c = 0;c<=3;c++) {
+  let cell = document.createElement('td')
+  cell.innerText = 'Row ' + r + ' Cell ' + c;
+  row.appendChild(cell)
+}
+
+}
+document.querySelector('body').appendChild(newtable)
+ }
+  
+ '50,'
+ function question50() { 
+
+   let deletetablebutton = document.createElement('button')
+   deletetablebutton.addEventListener('click',function() {
+let lastab = document.querySelector('table:last-child')
+lastab.parentElement.removeChild(lastab)
+
+   })
+   deletetablebutton.innerText = 'Delete last table';
+document.querySelector('.buttons').appendChild(deletetablebutton)
+
+ }
+
+
+</script>
+  <!--1,-->
+<title>
+Page Title
+</title>
+
+</head>
+<!-- saved from url=(0440)https://s3.eu-west-1.amazonaws.com/eduflow-production/activity-resources/212771821436657.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2TAWW44RCEE6YREN%2F20220203%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20220203T173206Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%27M1-D10-EX.html&X-Amz-Signature=6c72692ead3715355bcd61a7a15231fff292cbb1976c92d55016d83299f79475 -->
+<html>
+  <body>
+
+
+
+    <!--2,-->
+  <h1 onclick="trimheader(this);">My Header</h1>
+  <div class="buttons">
+<button onclick="hideimgs(this);">Hide Images</button>
+<button onclick="hidetable(this);">Hide Table</button>
+</div>
+<div>
+    <!--3,-->
+<ol>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ol>
+
+
+    <!--4/5/6,-->
+<table >
+  <tr>
+  <td>Row 1 Cell 1</td>
+  <td>Row 1 Cell 2 <div class="cellimage"><a href="https://www.amazon.com/LIGHTSABER-CHOPSTICKS-LED-Red-Blue/dp/B06VXT9R67/?_encoding=UTF8&pd_rd_w=4q1RF&pf_rd_p=7e192eb4-b436-4c22-a4c5-e8c1d01a8f41&pf_rd_r=TMWWFTJ5F38JP7AXQTWW&pd_rd_r=1a957332-0a2d-4df1-affe-4484ca978f91&pd_rd_wg=sORhW&ref_=pd_gw_exports_top_sellers_unrec">Lightsaber</a><img src="https://m.media-amazon.com/images/I/81gy90u9SGL._AC_SY200_.jpg"></div></td>
+  <td>Row 1 Cell 3</td>
+  <td>Row 1 Cell 4</td>
+  <td>Row 1 Cell 5</td>
+
+</tr>
+<tr>
+  <td>Row 2 Cell 1</td>
+  <td>Row 2 Cell 2 <div class="cellimage"><a href="https://www.amazon.com/LIGHTSABER-CHOPSTICKS-LED-Red-Blue/dp/B06VXT9R67/?_encoding=UTF8&pd_rd_w=4q1RF&pf_rd_p=7e192eb4-b436-4c22-a4c5-e8c1d01a8f41&pf_rd_r=TMWWFTJ5F38JP7AXQTWW&pd_rd_r=1a957332-0a2d-4df1-affe-4484ca978f91&pd_rd_wg=sORhW&ref_=pd_gw_exports_top_sellers_unrec">Lightsaber</a><img src="https://m.media-amazon.com/images/I/81gy90u9SGL._AC_SY200_.jpg"></div></td>
+
+  <td>Row 2 Cell 3</td>
+  <td>Row 2 Cell 4</td>
+  <td>Row 2 Cell 5</td>
+
+</tr>
+<tr>
+  <td>Row 3 Cell 1</td>
+  <td>Row 3 Cell 2 <div class="cellimage"><a href="https://www.amazon.com/LIGHTSABER-CHOPSTICKS-LED-Red-Blue/dp/B06VXT9R67/?_encoding=UTF8&pd_rd_w=4q1RF&pf_rd_p=7e192eb4-b436-4c22-a4c5-e8c1d01a8f41&pf_rd_r=TMWWFTJ5F38JP7AXQTWW&pd_rd_r=1a957332-0a2d-4df1-affe-4484ca978f91&pd_rd_wg=sORhW&ref_=pd_gw_exports_top_sellers_unrec">Lightsaber</a><img src="https://m.media-amazon.com/images/I/81gy90u9SGL._AC_SY200_.jpg"></div></td>
+
+  <td>Row 3 Cell 3</td>
+  <td>Row 3 Cell 4</td>
+  <td>Row 3 Cell 5</td>
+
+</tr>
+<tr>
+  <td>Row 4 Cell 1</td>
+  <td>Row 4 Cell 2 <div class="cellimage"><a href="https://www.amazon.com/LIGHTSABER-CHOPSTICKS-LED-Red-Blue/dp/B06VXT9R67/?_encoding=UTF8&pd_rd_w=4q1RF&pf_rd_p=7e192eb4-b436-4c22-a4c5-e8c1d01a8f41&pf_rd_r=TMWWFTJ5F38JP7AXQTWW&pd_rd_r=1a957332-0a2d-4df1-affe-4484ca978f91&pd_rd_wg=sORhW&ref_=pd_gw_exports_top_sellers_unrec">Lightsaber</a><img src="https://m.media-amazon.com/images/I/81gy90u9SGL._AC_SY200_.jpg"></div></td>
+  <!--7,-->
+  <td colspan="2">Row 4 Cell 3</td>
+
+  <td>Row 4 Cell 5</td>
+
+</tr>
+<tr>
+  <td>Row 5 Cell 1</td>
+  <td>Row 5 Cell 2 <div class="cellimage"><a href="https://www.amazon.com/LIGHTSABER-CHOPSTICKS-LED-Red-Blue/dp/B06VXT9R67/?_encoding=UTF8&pd_rd_w=4q1RF&pf_rd_p=7e192eb4-b436-4c22-a4c5-e8c1d01a8f41&pf_rd_r=TMWWFTJ5F38JP7AXQTWW&pd_rd_r=1a957332-0a2d-4df1-affe-4484ca978f91&pd_rd_wg=sORhW&ref_=pd_gw_exports_top_sellers_unrec">Lightsaber</a><img src="https://m.media-amazon.com/images/I/81gy90u9SGL._AC_SY200_.jpg"></div></td>
+
+  <td>Row 5 Cell 3</td>
+  <td>Row 5 Cell 4</td>
+  <td>Row 5 Cell 5</td>
+
+</tr>
+<tr><td colspan="5"><button onclick="deletecell()">Delete Row</button></td></tr>
+</table>
+    <!--8,-->
+<div class="divider"></div>
+
+</div>
+   <!--9,-->
+<div id="container">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+  </p>
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</div>
+   <!--10,-->
+<footer>
+Created by:
+Ashley Morgan
+04/02/2022
+</footer>
+
+
+
+</body>
+
+<!--
+        HTML EXERCISES
+
+        1) Create a title for this webpage
+        2) Create a heading of your choice
+        3) Create an ordered list with some list items into it
+        4) Create a table with 5 columns and 4 rows
+        5) Add an image to each second cell of every row
+        6) Add a anchor link for every image
+        7) Merge together 2 table cells
+        8) Divide the page using a horizontal line
+        9) Create a container with a nested paragraph and a nested unordered list
+        10) Create a footer with some information about the page creator
+
+        CSS EXERCISES
+
+        11) Give a maximum width to the body and center it into the page
+        12) Set every h1 to be centered
+        13) Change the color of each link in the page
+        14) Create a class with a border assigned to it
+        15) Set the previously created table to have rounded corners
+        16) Add a margin between every paragraph
+        17) Create a class which changes font size and text weight when applied
+        18) Create a class to hide a piece of content
+        19) Add a green border to each <td>
+        20) Add a dotted red border to each <tr> (note: <tr> does not accept a border property)
+
+        JS EXERCISES
+
+        21) Given variables x = "John" and y = "Doe", write on the console "John <> Doe"
+        22) Create an object with properties such name, surname, email
+        23) Delete the email property from the previously created object
+        24) Create an array with 10 strings in it
+        25) Print in the console every string from the previous array
+        26) Create an array with 100 random numbers in it
+        27) Write a function to get the maximum and minimum values from the previously created array
+        28) Create an array of arrays, in which every array has 10 random numbers
+        29) Create a function that gets 2 arrays as parameters and returns the longest one
+        30) Create a function that gets 2 arrays of numbers as parameters and returns the one with the higher sum of values
+
+        DOM EXERCISES
+
+        31) Get the element with an id of "container" from the page
+        32) Get every <td> element from the page
+        33) Use a loop for printing the text inside of every <td> element in the page
+        34) Write a function to change the heading of the page
+        35) Write a function to add an extra row to the table
+        36) Write a function to add a class of "test" to each row in the table
+        37) Write a function to add a red background to every link in the page
+        38) Console log "Page loaded" when the page is correctly loaded
+        39) Write a function to add new items to a unordered list
+        40) Write a function to empty a list
+
+        EXTRA EXERCISES
+
+        41) Add an eventListener to show an alert when the cursor hovers a link, displaying its href property
+        42) Create a button that will hide every image on the page when clicked
+        43) Create a button that will hide or show the table on the page when clicked
+        44) Write a function for calculating the sum of every number inside all the table cells (if their content is numeric)
+        45) Delete the last letter from the heading each time the user clicks on it
+        46) Change the background color of a <td> if the user clicks on it
+        47) Add a delete button at the bottom of the table, when clicked it should delete a random <td>
+        48) Add automatically a pink border to a cell when the mouse hovers it
+        49) Write a function to create a table with 4 rows and 3 columns programmatically and add it to the bottom of the page
+        50) Write a function to remove the last table from the page
+
+        /* WHEN YOU ARE FINISHED
+          Commit and push the code to your personal GitHub repository; then post the link of your commit on the Homework section of today's Eduflow.
+        */
+    --><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"> </head>
+  <body cz-shortcut-listen="true">
+
+</body></html>

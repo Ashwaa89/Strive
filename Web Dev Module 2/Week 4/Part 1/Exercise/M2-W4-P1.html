@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <style>
+      .myHeading {
+        color: red;
+      }
+      .answers {
+        display: flex;
+        flex-direction: column;
+      }
+      .answers span {
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1 id="title">This is the title of the page</h1>
+      <h2>This is the subtitle of the page</h2>
+    </div>
+
+    <div class="aside">
+      <hr />
+
+      <ul id="firstList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <ul id="secondList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <a href="strive.school">This link goes to Strive School</a>
+
+      <div>
+        <p>This text is just for the exercise</p>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          id="input-field"
+          placeholder="input field for the exercise"
+        />
+      </div>
+    </div>
+
+    <div class="section">
+      <p>And this text is just for the exercise too!</p>
+      <h2 style="color: red">
+        Save this page on your computer and open it with VSCode to get the
+        questions!
+      </h2>
+    </div>
+
+    <div class="answers">
+      <span
+        onclick="changeTitle(new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds() )"
+        >Answer 1,</span
+      >
+      <span onclick="addClassToTitle();">Answer 2,</span>
+      <span onclick="changePcontent();">Answer 3,</span>
+      <span onclick="changeUrls();">Answer 4,</span>
+      <span
+        onclick="addToTheSecond(document.querySelector('#input-field').value);"
+        >Answer 5,</span
+      >
+      <span
+        onclick="addParagraph(document.querySelector('#input-field').value);"
+        >Answer 6,</span
+      >
+      <span onclick="firstUlDisappear();">Answer 7,</span>
+      <span onclick="paintItGreen();">Answer 8,</span>
+      <span onclick="makeItClickable();">Answer 9,</span>
+      <span onclick="changeFooterText();">Answer 10,</span>
+      <span onclick="Reload();">Answer 11,</span>
+      <span onclick="Reload();">Answer 12,</span>
+    </div>
+
+    <div class="footer">
+      <h4>Hi i'm a footer</h4>
+    </div>
+    <script>
+      /* EXERCISE 1
+       Write a function for changing the title of the document in something else.
+      */
+
+      const changeTitle = function (newTitle) {
+        document.querySelector("#title").innerText = newTitle;
+      };
+      /* EXERCISE 2
+       Write a function for changing the class of the title of the page in "myHeading".
+      */
+
+      const addClassToTitle = function () {
+        document.querySelector("#title").classList.toggle("myHeading");
+      };
+
+      /* EXERCISE 3
+       Write a function for changing the text of only the p which are children of a div.
+      */
+
+      const changePcontent = function () {
+        for (let p of document.querySelectorAll("p")) {
+          if (p.parentNode.nodeName === "DIV") {
+            p.innerHTML = p.innerHTML.split("").reverse().join("");
+          }
+        }
+      };
+
+      /* EXERCISE 4
+       Write a function for changing the href property of every link to https://www.google.com
+      */
+
+      const changeUrls = function () {
+        for (let item of document.querySelectorAll("A")) {
+          item.href = "https://www.google.com";
+          item.innerHTML = item.innerHTML.split("").includes("!")
+            ? item.innerHTML
+            : "! " + item.innerHTML;
+        }
+      };
+
+      /* EXERCISE 5
+       Write a function for adding a new list item in the second unordered list.
+      */
+
+      const addToTheSecond = function (content) {
+        let item = document.createElement("li");
+        item.innerHTML = content;
+        document.querySelector("#secondList").appendChild(item);
+      };
+
+      /* EXERCISE 6
+       Write a function for adding a second paragraph to the first div.
+      */
+
+      const addParagraph = function (content) {
+        if (content === "") {
+          confirm("Please enter text first");
+        }
+        let item = document.createElement("p");
+        item.innerHTML = content;
+        document.querySelector("div").appendChild(item);
+      };
+
+      /* EXERCISE 7
+       Write a function for making the first unordered list disappear.
+      */
+
+      const firstUlDisappear = function () {
+        document.querySelector("#secondList").style.display =
+          document.querySelector("#secondList").style.display === "none"
+            ? "block"
+            : "none";
+      };
+
+      /* EXERCISE 8
+       Write a function for making the background of every unordered list green.
+      */
+
+      const paintItGreen = function () {
+        for (let item of document.querySelectorAll("ul")) {
+          item.style.backgroundColor =
+            item.style.backgroundColor === "green" ? "white" : "green";
+        }
+      };
+
+      /* EXERCISE 9
+       Make the heading of the page change color every time the user clicks on it.
+      */
+
+      const makeItClickable = function () {
+        document.querySelector("#title").addEventListener("click", function () {
+          let colors = [
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "indigo",
+            "violet",
+          ];
+          document.querySelector("#title").style.cursor = 'pointer';
+          document.querySelector("#title").style.color =
+            colors[Math.floor(Math.random() * colors.length)];
+        });
+      };
+      //window.onload =   makeItClickable();
+
+      /* EXERCISE 10
+       Change the footer text with something else when the user clicks on it.
+      */
+
+      const changeFooterText = function () {
+        document.querySelector(".footer").innerHTML =
+          "<h1>Hi i'm a larger footer!</h1>";
+      };
+
+      /* EXERCISE 11
+       Attach an event listener to the input field in the page for console logging its value just after any keystroke.
+      */
+
+      const inputField = document.getElementById("input-field");
+      window.onload = function () {
+        alert("Page Loaded");
+        inputField.addEventListener("keyup", function (e) {
+          console.log(e.key);
+        });
+      };
+
+      /* EXERCISE 12
+       Create a welcome alert message when the page successfully loads.
+      */
+
+      //See line 193
+
+      /* EXERCISE 13
+       Use HTML5 tags to properly provide semantic meaning to the different portions of the page.
+      */
+
+      function Reload() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
