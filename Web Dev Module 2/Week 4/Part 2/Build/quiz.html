@@ -52,9 +52,7 @@
         GetQuestions(document.querySelector("#questions").value);
       }
       function GetQuestions(num) {
-        console.log(
-          document.querySelector('input[name="difficulty"]:checked').id
-        );
+    
 
         document
           .querySelector("#progressbar-inner")
@@ -83,7 +81,7 @@
                 "Loading questions " + questions.length + "/" + num;
             },
             failure: function (response) {
-              console.log(response);
+              alert(response);
             },
           });
         }, 300);
@@ -109,104 +107,106 @@
           let header = document.createElement("h1");
           header.innerText = "Question " + (i + 1) + "/" + questions.length;
           questioncontainer.appendChild(header);
-
           let questiontext = document.createElement("h2");
           questiontext.innerHTML = question.question;
           questioncontainer.appendChild(questiontext);
-
           let answerresponse = document.createElement("h2");
-
           questioncontainer.appendChild(answerresponse);
-
           let answerscontainer = document.createElement("div");
           answerscontainer.className = "answers";
           questioncontainer.appendChild(answerscontainer);
-
           let answers = [];
           answers.push(question.correct_answer);
           answers.push(...question.incorrect_answers);
-          console.log(answers);
-
-          let answeredint = 0;
+         let answeredint = 0;
           let answered = false;
+          let positions = [];
 
-          for (let answer of answers) {
-            let answerbutton = document.createElement("button");
+          while (positions.length < answers.length) {
+let rnd = Math.round(Math.random() * (answers.length - 1) + 0);
+if (!positions.includes(rnd)) {
+  positions.push(rnd)
+}
+}
 
-            answerbutton.value = answer;
-            answerbutton.innerHTML = answer;
+for (let pos of positions) {
+let answer = answers[pos] 
+let answerbutton = document.createElement("button");
+answerbutton.value = answer;
+answerbutton.innerHTML = answer;
+answerbutton.addEventListener("click", function (e) {
+  score += e.target.value === answers[0] && !answered ? 1 : 0;
+  answeredint += !answered ? 1 : 0;
+  if (!answered) {
+    e.target.className = "select";
+  }
+  ready = !answered;
+  answered = true;
 
-            answerbutton.addEventListener("click", function (e) {
-              score += e.target.value === answers[0] && !answered ? 1 : 0;
-              answeredint += !answered ? 1 : 0;
-              if (!answered) {
-                e.target.className = "select";
-              }
-              ready = !answered;
-              answered = true;
+  if (ready) {
+    setTimeout(function () {
+          //e.target.className = 'select ' + e.target.value === answer ? 'correct' : 'incorrect';
+      e.target.style.fontWeight = "900";
+      answerresponse.innerHTML =
+        (e.target.value === answers[0] ? "Correct" : "Incorrect") +
+        "<br>Score " +
+        score +
+        "/" +
+        questions.length;
+      answerresponse.style.color =
+        e.target.value === answers[0] ? "green" : "red";
 
-              if (ready) {
-                setTimeout(function () {
-                  console.log(e.target.value, answer);
-                  //e.target.className = 'select ' + e.target.value === answer ? 'correct' : 'incorrect';
-                  e.target.style.fontWeight = "900";
-                  answerresponse.innerHTML =
-                    (e.target.value === answers[0] ? "Correct" : "Incorrect") +
-                    "<br>Score " +
-                    score +
-                    "/" +
-                    questions.length;
-                  answerresponse.style.color =
-                    e.target.value === answers[0] ? "green" : "red";
+      for (let button of e.target.parentElement.querySelectorAll(
+        "button"
+      )) {
+        if (button.value === answers[0]) {
+          button.className = "select correct";
+        } else {
+          button.className = "select incorrect";
+        }
+      }
+    }, 1000);
 
-                  for (let button of e.target.parentElement.querySelectorAll(
-                    "button"
-                  )) {
-                    if (button.value === answers[0]) {
-                      button.className = "select correct";
-                    } else {
-                      button.className = "select incorrect";
-                    }
-                  }
-                }, 1000);
+    setTimeout(function () {
+      document.querySelector("#main").style.left =
+        parseInt(document.querySelector("#main").style.left) -
+        100 +
+        "%";
+      ready = true;
+    }, 2000);
+  }
 
-                setTimeout(function () {
-                  document.querySelector("#main").style.left =
-                    parseInt(document.querySelector("#main").style.left) -
-                    100 +
-                    "%";
-                  ready = true;
-                }, 2000);
-              }
 
-              console.log(answeredint);
 
-              if (answeredint === questions.length) {
-                document.querySelector("#main").style.left =
-                  parseInt(document.querySelector("#main").style.left) -
-                  100 +
-                  "%";
-                resultssubheader.innerHTML =
-                  "You answered " + score + "/" + questions.length + " correct";
+  if (answeredint === questions.length) {
+    document.querySelector("#main").style.left =
+      parseInt(document.querySelector("#main").style.left) -
+      100 +
+      "%";
+    resultssubheader.innerHTML =
+      "You answered " + score + "/" + questions.length + " correct";
 
-                if (score === questions.length) {
-                  resultsresponse.innerHTML = "Nailed It";
-                } else if (round(score / questions.length) >= 0.5) {
-                  resultsresponse.innerHTML = "Fair play";
-                } else if (round(score / questions.length) < 0.5) {
-                  resultsresponse.innerHTML = "Keep studying";
-                } else if (round(score / questions.length) <= 0) {
-                  resultsresponse.innerHTML = ":(";
-                }
-              }
-            });
-            answerscontainer.appendChild(answerbutton);
-          }
+    if (score === questions.length) {
+      resultsresponse.innerHTML = "Nailed It";
+    } else if (Math.round(score / questions.length) >= 0.5) {
+      resultsresponse.innerHTML = "Fair play";
+    } else if (Math.round(score / questions.length) < 0.5) {
+      resultsresponse.innerHTML = "Keep studying";
+    } else if (Math.round(score / questions.length) <= 0) {
+      resultsresponse.innerHTML = ":(";
+    }
+  }
+});
+answerscontainer.appendChild(answerbutton);
+
+}
+
+ 
 
           document.querySelector("#main").appendChild(questioncontainer);
         }
 
-        console.log(results);
+
         document.querySelector("#main").appendChild(results);
       }
     </script>
