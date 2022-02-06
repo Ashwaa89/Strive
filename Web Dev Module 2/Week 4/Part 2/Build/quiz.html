@@ -44,173 +44,171 @@
       rel="stylesheet"
     />
     <script>
-    let questions = [];
-    let score = 0;
+      let questions = [];
+      let score = 0;
       function loadquiz(e) {
         questions = [];
-      e.disabled = true
-      GetQuestions(document.querySelector('#questions').value)  
+        e.disabled = true;
+        GetQuestions(document.querySelector("#questions").value);
       }
       function GetQuestions(num) {
-    console.log( document.querySelector('input[name="difficulty"]:checked').id)
+        console.log(
+          document.querySelector('input[name="difficulty"]:checked').id
+        );
 
-    document.querySelector('#progressbar-inner').querySelector('span').innerText = 'Loading questions';
-         let load =  setInterval(function() {
+        document
+          .querySelector("#progressbar-inner")
+          .querySelector("span").innerText = "Loading questions";
+        let load = setInterval(function () {
           $.ajax({
             type: "POST",
             async: false,
-            url: "https://opentdb.com/api.php?amount=10&category=18&difficulty=" + document.querySelector('input[name="difficulty"]:checked').id,
+            url:
+              "https://opentdb.com/api.php?amount=10&category=18&difficulty=" +
+              document.querySelector('input[name="difficulty"]:checked').id,
             contentType: "text/plain; charset=UTF-8",
             dataType: "json",
             success: function (response) {
               questions.push(...response.results);
               if (questions.length >= num) {
-              clearInterval(load)
-document.querySelector('#startbutton').disabled = false;
-startquiz();
+                clearInterval(load);
+                document.querySelector("#startbutton").disabled = false;
+                startquiz();
               }
-              document.querySelector('#progressbar-inner').style.width = ((questions.length / num) * 100)  +'%';
-              document.querySelector('#progressbar-inner').querySelector('span').innerText = 'Loading questions ' + questions.length + '/' + num;
-           
+              document.querySelector("#progressbar-inner").style.width =
+                (questions.length / num) * 100 + "%";
+              document
+                .querySelector("#progressbar-inner")
+                .querySelector("span").innerText =
+                "Loading questions " + questions.length + "/" + num;
             },
             failure: function (response) {
               console.log(response);
             },
-          });},300) 
+          });
+        }, 300);
       }
 
       function startquiz() {
-document.querySelector('#main').style.left = '-100%'
-let results = document.createElement('div')
-results.className = "results"
-let resultsheader = document.createElement('h1')
-resultsheader.innerText = 'Results';
-results.appendChild(resultsheader);
-let resultssubheader = document.createElement('h2')
-results.appendChild(resultssubheader);
-let resultsresponse = document.createElement('h3')
-results.appendChild(resultsresponse);
-let ready = true
-for (let i = 0;i<questions.length;i++) {
-let question = questions[i]
-let questioncontainer = document.createElement('div')
- questioncontainer.id = "question" + i;
- questioncontainer.className = 'question'
- let header = document.createElement('h1')
- header.innerText = 'Question ' + (i + 1) + '/' + questions.length
- questioncontainer.appendChild(header)
+        document.querySelector("#main").style.left = "-100%";
+        let results = document.createElement("div");
+        results.className = "results";
+        let resultsheader = document.createElement("h1");
+        resultsheader.innerText = "Results";
+        results.appendChild(resultsheader);
+        let resultssubheader = document.createElement("h2");
+        results.appendChild(resultssubheader);
+        let resultsresponse = document.createElement("h3");
+        results.appendChild(resultsresponse);
+        let ready = true;
+        for (let i = 0; i < questions.length; i++) {
+          let question = questions[i];
+          let questioncontainer = document.createElement("div");
+          questioncontainer.id = "question" + i;
+          questioncontainer.className = "question";
+          let header = document.createElement("h1");
+          header.innerText = "Question " + (i + 1) + "/" + questions.length;
+          questioncontainer.appendChild(header);
 
- let questiontext = document.createElement('h2')
- questiontext.innerHTML =question.question;
- questioncontainer.appendChild(questiontext)
+          let questiontext = document.createElement("h2");
+          questiontext.innerHTML = question.question;
+          questioncontainer.appendChild(questiontext);
 
- let answerresponse = document.createElement('h2')
+          let answerresponse = document.createElement("h2");
 
-  questioncontainer.appendChild(answerresponse)
+          questioncontainer.appendChild(answerresponse);
 
- let answerscontainer =  document.createElement('div')
- answerscontainer.className = 'answers'
- questioncontainer.appendChild(answerscontainer)
+          let answerscontainer = document.createElement("div");
+          answerscontainer.className = "answers";
+          questioncontainer.appendChild(answerscontainer);
 
- let answers = []
- answers.push(question.correct_answer)
- answers.push(...question.incorrect_answers)
- console.log(answers)
+          let answers = [];
+          answers.push(question.correct_answer);
+          answers.push(...question.incorrect_answers);
+          console.log(answers);
 
+          let answeredint = 0;
+          let answered = false;
 
- let answeredint = 0
- let answered = false
+          for (let answer of answers) {
+            let answerbutton = document.createElement("button");
 
- for (let answer of answers) {
-   let answerbutton = document.createElement('button')
+            answerbutton.value = answer;
+            answerbutton.innerHTML = answer;
 
-   answerbutton.value = answer;
-   answerbutton.innerHTML = answer;
+            answerbutton.addEventListener("click", function (e) {
+              score += e.target.value === answers[0] && !answered ? 1 : 0;
+              answeredint += !answered ? 1 : 0;
+              if (!answered) {
+                e.target.className = "select";
+              }
+              ready = !answered;
+              answered = true;
 
-   answerbutton.addEventListener('click',function(e) {
+              if (ready) {
+                setTimeout(function () {
+                  console.log(e.target.value, answer);
+                  //e.target.className = 'select ' + e.target.value === answer ? 'correct' : 'incorrect';
+                  e.target.style.fontWeight = "900";
+                  answerresponse.innerHTML =
+                    (e.target.value === answers[0] ? "Correct" : "Incorrect") +
+                    "<br>Score " +
+                    score +
+                    "/" +
+                    questions.length;
+                  answerresponse.style.color =
+                    e.target.value === answers[0] ? "green" : "red";
 
+                  for (let button of e.target.parentElement.querySelectorAll(
+                    "button"
+                  )) {
+                    if (button.value === answers[0]) {
+                      button.className = "select correct";
+                    } else {
+                      button.className = "select incorrect";
+                    }
+                  }
+                }, 1000);
 
- 
-    
-       score += e.target.value === answers[0] && !answered  ? 1 : 0;
-     answeredint += !answered ? 1 : 0
-     if (!answered) {
-      e.target.className = 'select'
-     }
-     ready = !answered;
-     answered = true;
+                setTimeout(function () {
+                  document.querySelector("#main").style.left =
+                    parseInt(document.querySelector("#main").style.left) -
+                    100 +
+                    "%";
+                  ready = true;
+                }, 2000);
+              }
 
+              console.log(answeredint);
 
-if (ready) {
+              if (answeredint === questions.length) {
+                document.querySelector("#main").style.left =
+                  parseInt(document.querySelector("#main").style.left) -
+                  100 +
+                  "%";
+                resultssubheader.innerHTML =
+                  "You answered " + score + "/" + questions.length + " correct";
 
+                if (score === questions.length) {
+                  resultsresponse.innerHTML = "Nailed It";
+                } else if (round(score / questions.length) >= 0.5) {
+                  resultsresponse.innerHTML = "Fair play";
+                } else if (round(score / questions.length) < 0.5) {
+                  resultsresponse.innerHTML = "Keep studying";
+                } else if (round(score / questions.length) <= 0) {
+                  resultsresponse.innerHTML = ":(";
+                }
+              }
+            });
+            answerscontainer.appendChild(answerbutton);
+          }
 
-  setTimeout(function() {
-    console.log(e.target.value,answer)
-      //e.target.className = 'select ' + e.target.value === answer ? 'correct' : 'incorrect';
-      e.target.style.fontWeight = '900'
-      answerresponse.innerHTML =  (e.target.value === answers[0] ? 'Correct' : 'Incorrect') + '<br>Score ' + score + '/' + questions.length;
-      answerresponse.style.color =  e.target.value === answers[0] ? 'green' : 'red';
+          document.querySelector("#main").appendChild(questioncontainer);
+        }
 
-for (let button of e.target.parentElement.querySelectorAll('button')) {
-  if (button.value === answers[0]) {
-    button.className = 'select correct'
-  } else {
-    button.className = 'select incorrect'
-  }
-  }
-  
-
-     },1000)
-
-     setTimeout(function() {
-      document.querySelector('#main').style.left = parseInt(document.querySelector('#main').style.left ) - 100 + '%' 
-    ready = true;
-    },2000)
-    }
-
-   
-  
-  
-   console.log(answeredint)
-
-     if (answeredint === questions.length) {
-      document.querySelector('#main').style.left = parseInt(document.querySelector('#main').style.left ) - 100 + '%' 
-      resultssubheader.innerHTML = 'You answered ' + score + "/" + questions.length + ' correct';
-
-      
-      if (score === questions.length ) {
-resultsresponse.innerHTML = 'Nailed It'
-      } else if (round(score /questions.length) >= 0.5 ) {
-        resultsresponse.innerHTML = 'Fair play'
-      } else if (round(score /questions.length) < 0.5) {
-        resultsresponse.innerHTML = 'Keep studying'
-      } else if  (round(score /questions.length) <= 0) {
-        resultsresponse.innerHTML = ':('
+        console.log(results);
+        document.querySelector("#main").appendChild(results);
       }
-    
-     }
-
-
-
- 
-   })
-   answerscontainer.appendChild(answerbutton)
-
- }
-
- document.querySelector('#main').appendChild(questioncontainer);
-
-
-}
-
-console.log(results)
-document.querySelector('#main').appendChild(results);
-
-
-
-     }
-
-
     </script>
     <style>
       body {
@@ -228,39 +226,39 @@ document.querySelector('#main').appendChild(results);
         border: 1px solid black;
         overflow: hidden;
 
-    white-space: nowrap;
-     
+        white-space: nowrap;
       }
-   h2 {
-    overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
-   }
-      #main,.question,.results {
+      h2 {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+      #main,
+      .question,
+      .results {
         display: inline-block;
-     position: relative;
+        position: relative;
         padding: 20px;
-   width:100%;
+        width: 100%;
         height: 100%;
-        text-align: center;    
-        padding:0;
-        margin:0;
+        text-align: center;
+        padding: 0;
+        margin: 0;
         margin-bottom: 100%;
         transition: all 1s ease-in-out;
-      left:0;
-   
-
+        left: 0;
       }
-      .question,.results {
+      .question,
+      .results {
         white-space: nowrap;
-    overflow: hidden;
+        overflow: hidden;
       }
-      #main div:first-child,.question div:first-child {
-  
-        display:flex;
+      #main div:first-child,
+      .question div:first-child {
+        display: flex;
         flex-direction: column;
-        width:100%;
-        float:left;
+        width: 100%;
+        float: left;
         height: 100%;
       }
       #main h2 {
@@ -270,7 +268,6 @@ document.querySelector('#main').appendChild(results);
         display: flex;
 
         justify-content: center;
-        
       }
       #easy:checked + label,
       #easy + label:hover {
@@ -290,7 +287,7 @@ document.querySelector('#main').appendChild(results);
         z-index: 100;
       }
       #difficulty input[type="radio"]:checked + label {
-color:white;
+        color: white;
       }
 
       #difficulty label {
@@ -302,132 +299,123 @@ color:white;
         padding: 10px;
       }
 
-      #questions, #startbutton {
-        width:20%;
-       margin-left:50%;
-       transform:translateX(-50%);
-       border-radius: 20px;
-       padding:10px;
-       font-size:12pt;
+      #questions,
+      #startbutton {
+        width: 20%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 12pt;
       }
-      #startbutton, .answers> button {
-        width:50%;
-       margin-left:50%;
-       transform:translateX(-50%);
-       border-radius: 20px;
-       padding:10px;
-       margin-top:20px;
-       font-size:12pt;
-       background-color:white;
-    color:black;
-    transition: all 0.5s ease-in-out;
+      #startbutton,
+      .answers > button {
+        width: 50%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 12pt;
+        background-color: white;
+        color: black;
+        transition: all 0.5s ease-in-out;
       }
       #startbutton:hover {
-        background-color:green;
-        color:white;
+        background-color: green;
+        color: white;
       }
 
       #progressbar-outer {
-        position:relative;
-        height:30px;
+        position: relative;
+        height: 30px;
         border-radius: 20px;
-        margin-top:20px;
-        border:1px solid black;
+        margin-top: 20px;
+        border: 1px solid black;
       }
       #progressbar-inner {
-       
-background-color:green;
-height:100%;
-border-radius: 20px;
+        background-color: green;
+        height: 100%;
+        border-radius: 20px;
       }
       #progressbar-inner span {
- left:50%;
- top:50%;
- transform:translate(-50%,-50%);
- position:absolute;
- background-color:rgba(255,255,255,0.5);
- border-radius: 20px;
- padding:5px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 5px;
       }
 
       .hide {
-left: -100% !important;
-
-
+        left: -100% !important;
       }
 
       .answers {
-display:flex;
-flex-wrap: wrap;
-margin-top:20%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20%;
       }
       .answers button {
-width:46%;
-margin:2%;
-padding:20px;
-transform:translateX(0);
+        width: 46%;
+        margin: 2%;
+        padding: 20px;
+        transform: translateX(0);
       }
       .answers button.select {
-        font-size:16pt;
-        filter:invert()
+        font-size: 16pt;
+        filter: invert();
       }
       .answers button.correct {
-        filter:none;
-background-color:green;
-
+        filter: none;
+        background-color: green;
       }
       .answers button.incorrect {
-        filter:none;
-background-color:red;
-
+        filter: none;
+        background-color: red;
       }
 
-
       .answers button:hover {
-        font-size:16pt;
-      
+        font-size: 16pt;
       }
     </style>
   </head>
   <body cz-shortcut-listen="true">
     <div id="container">
-      <div id="main" >
+      <div id="main">
         <div>
-        <h1>Welcome to my computer quiz</h1>
-        <h2>Select difficulty</h2>
-        <div id="difficulty">
-          <input type="radio" id="easy" name="difficulty" checked />
-          <label for="easy">Easy</label>
-          <input type="radio" id="medium" name="difficulty" />
-          <label for="medium">Medium</label>
-          <input type="radio" id="hard" name="difficulty" />
-          <label for="hard">Hard</label>
-        </div>
-        <h2>Select number of questions</h2>
-        <select id="questions">
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="60">60</option>
-          <option value="70">70</option>
-          <option value="80">80</option>
-          <option value="90">90</option>
-          <option value="100">100</option>
-        </select>
-        <button id="startbutton" onclick="loadquiz(this);">Start</button>
+          <h1>Welcome to my computer quiz</h1>
+          <h2>Select difficulty</h2>
+          <div id="difficulty">
+            <input type="radio" id="easy" name="difficulty" checked />
+            <label for="easy">Easy</label>
+            <input type="radio" id="medium" name="difficulty" />
+            <label for="medium">Medium</label>
+            <input type="radio" id="hard" name="difficulty" />
+            <label for="hard">Hard</label>
+          </div>
+          <h2>Select number of questions</h2>
+          <select id="questions">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+          </select>
+          <button id="startbutton" onclick="loadquiz(this);">Start</button>
 
-        <div id="progressbar-outer">
-<div id="progressbar-inner" style="width:0"><span></span>
-
-</div>
-
+          <div id="progressbar-outer">
+            <div id="progressbar-inner" style="width: 0"><span></span></div>
+          </div>
         </div>
       </div>
-      
     </div>
-  </div>
     <!-- <script>
       
 
