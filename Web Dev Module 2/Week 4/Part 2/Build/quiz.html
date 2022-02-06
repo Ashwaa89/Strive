@@ -46,6 +46,7 @@
     <script>
       let questions = [];
       let score = 0;
+      let answeredint = 0;
       function loadquiz(e) {
         questions = [];
         e.disabled = true;
@@ -89,15 +90,7 @@
 
       function startquiz() {
         document.querySelector("#main").style.left = "-100%";
-        let results = document.createElement("div");
-        results.className = "results";
-        let resultsheader = document.createElement("h1");
-        resultsheader.innerText = "Results";
-        results.appendChild(resultsheader);
-        let resultssubheader = document.createElement("h2");
-        results.appendChild(resultssubheader);
-        let resultsresponse = document.createElement("h3");
-        results.appendChild(resultsresponse);
+       
         let ready = true;
         for (let i = 0; i < questions.length; i++) {
           let question = questions[i];
@@ -118,7 +111,7 @@
           let answers = [];
           answers.push(question.correct_answer);
           answers.push(...question.incorrect_answers);
-         let answeredint = 0;
+      
           let answered = false;
           let positions = [];
 
@@ -177,24 +170,58 @@ answerbutton.addEventListener("click", function (e) {
   }
 
 
-
   if (answeredint === questions.length) {
-    document.querySelector("#main").style.left =
-      parseInt(document.querySelector("#main").style.left) -
-      100 +
-      "%";
-    resultssubheader.innerHTML =
-      "You answered " + score + "/" + questions.length + " correct";
+    //skip to end
+    // document.querySelector("#main").style.left =
+    //   parseInt(document.querySelector("#main").style.left) -
+    //   ((questions.length * 100) - 100) +
+    //   "%";
+      let results = document.createElement("div");
+            results.className = "results";
+        let resultsheader = document.createElement("h1");
+        resultsheader.innerText = "Results";
+        results.appendChild(resultsheader);
+        let resultssubheader  = document.createElement("h2");
 
+        
+        results.appendChild(resultssubheader);
+        let resultsresponse = document.createElement("h3");
+       
+        resultssubheader.innerHTML =
+      "You answered " + score + "/" + questions.length + " correct";
+      results.appendChild(resultsresponse);
     if (score === questions.length) {
       resultsresponse.innerHTML = "Nailed It";
     } else if (Math.round(score / questions.length) >= 0.5) {
       resultsresponse.innerHTML = "Fair play";
+    } else if (Math.round(score) <= 0) {
+      resultsresponse.innerHTML = ":(";
     } else if (Math.round(score / questions.length) < 0.5) {
       resultsresponse.innerHTML = "Keep studying";
-    } else if (Math.round(score / questions.length) <= 0) {
-      resultsresponse.innerHTML = ":(";
+  
+
     }
+
+let restartbutton = document.createElement('button') 
+restartbutton.addEventListener('click',function() {
+  document.querySelector("#main").style.left =0;
+  document.querySelector('#progressbar-inner').style.width = 0;
+  document.querySelector('#progressbar-inner span').innerText = ''
+  questions = [];
+  setTimeout(function() {
+    for (let question of document.querySelectorAll('.question')) {
+  question.parentElement.removeChild(question); 
+
+ }
+ results.parentElement.removeChild(results)
+
+  },2000)
+
+})
+restartbutton.innerHTML = 'Restart'
+restartbutton.id = "restartbutton"
+results.appendChild(restartbutton);
+    document.querySelector("#main").appendChild(results);
   }
 });
 answerscontainer.appendChild(answerbutton);
@@ -207,7 +234,7 @@ answerscontainer.appendChild(answerbutton);
         }
 
 
-        document.querySelector("#main").appendChild(results);
+     
       }
     </script>
     <style>
@@ -299,17 +326,17 @@ answerscontainer.appendChild(answerbutton);
         padding: 10px;
       }
 
-      #questions,
-      #startbutton {
-        width: 20%;
+      #questions {
+      
         margin-left: 50%;
         transform: translateX(-50%);
         border-radius: 20px;
         padding: 10px;
         font-size: 12pt;
       }
+
       #startbutton,
-      .answers > button {
+      .answers > button,#restartbutton {
         width: 50%;
         margin-left: 50%;
         transform: translateX(-50%);
@@ -321,7 +348,7 @@ answerscontainer.appendChild(answerbutton);
         color: black;
         transition: all 0.5s ease-in-out;
       }
-      #startbutton:hover {
+      #startbutton:hover,#restartbutton:hover {
         background-color: green;
         color: white;
       }
