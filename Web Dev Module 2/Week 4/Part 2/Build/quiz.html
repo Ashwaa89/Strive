@@ -49,6 +49,8 @@
       let answeredint = 0;
       function loadquiz(e) {
         questions = [];
+        score = 0;
+        answeredint = 0;
         e.disabled = true;
         GetQuestions(document.querySelector("#questions").value);
       }
