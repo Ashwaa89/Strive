@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex Exercise</title>
+    <style>
+      .card {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 500px;
+        margin: auto;
+        border-radius: 25%;
+        border: 0px solid black;
+        overflow: hidden;
+        background-color: #fbf7e3;
+        color: #612406;
+      }
+      .card img {
+        object-fit: none;
+        object-position: center;
+        height: 75%;
+      }
+      .card .description {
+          display:flex;
+     
+          margin:auto;
+          color: #612406;
+          margin:20px;
+  
+         
+      }
+      .card .title {
+          display:flex;
+          flex-direction: column;
+          margin:auto;
+        width:100%;
+        text-align: center;
+
+      }
+      .card .maintitle {
+        font-size:20pt;
+        font-weight: bolder;
+      }
+
+      .card .price {
+          margin:auto;
+          padding-right:20px;
+      }
+
+      .card button {
+          background-color: #f3df85;
+          border:0;
+          margin:auto;
+          width:50%;
+          height:40px;
+          padding:10px;
+          font-size:16pt;
+          border-radius:20px;
+          margin-bottom:20px;
+          color: #612406;
+      }
+      .card .title,  .card .price {
+        font-size:15pt;
+      }
+
+
+      nav{
+        background-color: #fbf7e3;
+        display:flex;
+        text-align: center;
+width:50%;
+margin:20px auto;
+top:20px;
+height:150px;
+border-radius:100px;
+      }
+      nav button {
+          margin:auto;
+          background-color: #f3df85;
+          border:0;
+          font-size:12pt;
+          padding:15px;
+          border-radius:50px;
+          color: #612406;
+          font-weight:bold;
+      }
+      nav .mainbutton {
+          height:70%;
+          flex-grow:0;
+          width:30%;
+          display:flex;
+          margin:auto;
+          align-items: center;
+          padding:10px;
+          justify-content: space-around;
+      }
+      nav .mainbutton{
+margin-top:auto;
+font-size:20pt;
+font-weight:bolder;
+
+      }
+      nav .mainbutton::before {
+          content:"";
+          background-image:url("assets/logo.png");
+      
+          display:block;
+          height:100%;
+          width:40%;
+          object-fit:fill;
+          position: relative;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin-right:20px;
+       left:0;
+      }
+
+
+
+      article {
+        background-color: #fbf7e3;
+    
+        display:flex;
+        padding:20px;
+     border-radius:20px;
+     width:70%;
+     margin:20px auto;
+     color: #612406;
+      }
+      article .details {
+          display:flex;
+          flex-direction: column;
+          margin-left:20px;
+
+      }
+      article .details .title {
+          font-size:20pt;
+       font-weight:bolder;
+       margin-bottom:20px;
+
+      }
+      article .details .description {
+        font-size:12pt;
+       font-weight:100;
+       
+      }
+
+        @media(max-width:600px) {
+            article {
+                flex-direction: column;
+                padding-top:30px;
+                padding-bottom:30px;
+            }
+            article .details {
+margin:0;
+padding:20px;
+
+            }
+            article  .details .description {
+                font-weight:500;
+                font-size:16pt;
+            }
+            article img {
+                padding-top:20px;
+                padding-left:20px;
+                padding-right:20px;
+          order:2
+        }
+
+        }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img src="/assets/honey.jpg" alt="Honey" />
+      <div class="description">
+        <div class="title">
+            <span class="maintitle">100% Bio Honey</span><span class="subtitle">Italian, not treated</span>
+          </div>
+          <div class="price">
+              7$/Kg
+          </div>
+
+      </div>
+      
+      <button>Add to cart</button>
+    </div>
+
+<nav>
+<button>Our Honey</button>
+<button>Trace Honey</button>
+<button class="mainbutton">SHOP</button>
+<button>Facilities</button>
+<button>Contacts</button>
+</nav>
+
+
+<article>
+
+    <img src="assets/honey.jpg" alt="honey">
+    <span class="details">
+
+
+  
+<span class="title">Our delicious honey</span>
+<span class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus sit amet enim non tristique. Vestibulum luctus ante id dui tempus, vel egestas metus placerat. Donec sed turpis justo. Curabitur fermentum, dolor sed bibendum dignissim, lorem nisl egestas nisi, sit amet tempor erat sapien a lacus. Etiam turpis quam, tristique non tristique sed, accumsan eget ligula. Sed facilisis dapibus dui, vitae placerat eros pulvinar at. Maecenas tincidunt lacus dolor, eget dignissim magna cursus a. Maecenas tincidunt placerat ante vel interdum. Praesent quis ultricies nulla. Nunc eget risus ut massa egestas ultricies. Duis hendrerit facilisis nunc viverra euismod. Vivamus congue tempor lectus vitae venenatis. Sed in tortor sapien. Nam feugiat est eget erat ornare, ac tincidunt nibh rutrum. Duis ultrices quam justo, eget aliquam justo luctus ut. Vestibulum at nisl velit.</span>
+
+</span>
+
+
+
+
+
+</article>
+
+  </body>
+</html>
