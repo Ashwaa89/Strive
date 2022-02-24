@@ -39,6 +39,12 @@
                 transform: translateX(60%) !important;
             }
         }
+        .clip {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+        }
     </style>
 </head>
 
@@ -84,13 +90,13 @@
                         </div>
                         <div class="col-md-6 d-flex flex-column ml-auto">
                             <h2 class="card-title text-left">Toxicity</h2>
-                            <div class="card-subtitle pt-3 text-left">
+                            <div class="card-subtitle pt-3 text-left clip">
                                 <h6>System of a Down</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>Alternative metal / nu metal</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>44:01 Minutes</h6>
                             </div>
                         </div>
@@ -105,15 +111,15 @@
                                 class="w-100" />
                         </div>
                         <div class="col-md-6 d-flex flex-column ml-auto">
-                            <h2 class="card-title text-left">The Colour and the Shape</h2>
-                            <div class="card-subtitle pt-3 text-left">
+                            <h2 class="card-title text-left clip">The Colour and the Shape</h2>
+                            <div class="card-subtitle pt-3 text-left clip">
                                 <h6>Foo Fighters</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>
                                     Alternative rock / post-grunge / grunge</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>46:47 Minutes</h6>
                             </div>
                         </div>
@@ -128,14 +134,14 @@
                                 class="w-100" />
                         </div>
                         <div class="col-md-6 d-flex flex-column ml-auto">
-                            <h2 class="card-title text-left">Nevermind</h2>
-                            <div class="card-subtitle pt-3 text-left">
+                            <h2 class="card-title text-left clip">Nevermind</h2>
+                            <div class="card-subtitle pt-3 text-left clip">
                                 <h6>Nirvana</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>Grunge / alternative rock</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>42:36 Minutes</h6>
                             </div>
                         </div>
@@ -150,15 +156,15 @@
                                 class="w-100" />
                         </div>
                         <div class="col-md-6 d-flex flex-column ml-auto">
-                            <h2 class="card-title text-left">Blink-182</h2>
-                            <div class="card-subtitle pt-3 text-left">
+                            <h2 class="card-title text-left clip">Blink-182</h2>
+                            <div class="card-subtitle pt-3 text-left clip">
                                 <h6>Blink-182</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>
                                     Pop-punk / alternative rock</h6>
                             </div>
-                            <div class="card-subtitle pt-1 text-left">
+                            <div class="card-subtitle pt-1 text-left clip">
                                 <h6>49:16 Minutes</h6>
                             </div>
                         </div>
@@ -168,30 +174,27 @@
         </div>
     </div>
 
-
-
-
-
-    <div id="album-review" class="container-fluid text-center font-weight-bold h-50 mh-50 pt-5 mb-5">
+    <div id="album-review" class="container-fluid text-center font-weight-bold mt-5">
         <h2 class="card-title">Album Review</h2>
-        <div class="row ">
-            <div class="col-6 h-100 mh-100 text-right">
+          <div class="row row-cols-2">
+              <div class="col text-right">
                 <img src="https://upload.wikimedia.org/wikipedia/en/6/64/SystemofaDownToxicityalbumcover.jpg"
-                    class=" mh-100 h-100" />
-            </div>
-            <div class="col-6 h text-center">
-
-                <h2 class="card-title text-center">Toxicity</h2>
-                <div class="card-subtitle pt-3 text-center">
+                class="img-fluid h-100" />
+              </div>
+              <div class="col text-left">
+                <h2 class="card-title">Toxicity</h2>
+                <div class="card-subtitle pt-3">
                     <h6>System of a Down</h6>
                 </div>
-                <div class="card-subtitle pt-1 text-center">
+                <div class="card-subtitle pt-1">
                     <h6>Alternative metal / nu metal</h6>
                 </div>
-                <div class="card-subtitle pt-1 text-center">
+                <div class="card-subtitle pt-1">
                     <h6>44:01 Minutes</h6>
                 </div>
-                <div class="col-6 h-25 mh-25 overflow-auto  w-100 mw-100 text-center">
+                <div>
+                    <h2 class="card-title text-center">Tracklist</h2>
+                    <div  class="overflow-auto" style="height:300px">
                     <table class="table table-dark text-center">
 
                         <thead class="sticky-top table-dark w-100 mw-100">
@@ -274,12 +277,13 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
-
-            </div>
+                </div>
+              </div>
+         </div>
         </div>
-    </div>
+
+
 
 
 
@@ -465,7 +469,7 @@
 
 
 
-        </div>
+        </div> 
 </body>
 
 </html>
