@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albums</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        display: block;
+      }
+
+      @media (max-width: 576px), (max-width: 768px) {
+        .card-title {
+          text-align: center !important;
+        }
+
+        .card-subtitle {
+          text-align: center !important;
+        }
+
+        .card img {
+          /* Why 60%? */
+          transform: translateX(60%) !important;
+        }
+      }
+ 
+
+      .genre {
+          background-color:rgba(255,255,255,0.6);
+      }
+      
+      .clip {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+        }
+        #addtrackbutton {
+            transition:box-shadow 0.1s ease-in-out;
+        }
+        #addtrackbutton:hover {
+            box-shadow: 0px 15px 20px rgba(0,0,0,.2)
+
+        }
+    </style>
+
+    <script>
+        function deletetrack(e) {
+e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement)
+        }
+        function addtrack() {
+           
+            let tracklistbody = document.querySelector('#album_review_tracklist').querySelector('tbody')
+            let row = document.createElement("tr")
+           let number = document.createElement('th')
+let title = document.createElement('td')
+let lyrics = document.createElement('td')
+let length = document.createElement('td')
+let deletecol = document.createElement('td')
+let deletebutton = document.createElement('button')
+
+number.innerText = document.querySelector('#new_track_number').value;
+number.scope='row'
+document.querySelector('#new_track_number').value = '';
+
+title.innerText = document.querySelector('#new_track_title').value;
+document.querySelector('#new_track_title').value = ''
+
+lyrics.innerText = document.querySelector('#new_track_lyrics').value;
+document.querySelector('#new_track_lyrics').value = ''
+
+length.innerText = document.querySelector('#new_track_length').value;
+document.querySelector('#new_track_length').value = '';
+
+deletebutton.className="btn btn-danger";
+deletebutton.innerText = 'Delete'
+deletebutton.setAttribute('onclick','deletetrack(event);')
+
+deletecol.appendChild(deletebutton)
+
+
+
+
+
+
+
+row.appendChild(number)
+row.appendChild(title)
+row.appendChild(lyrics)
+row.appendChild(length)
+row.appendChild(deletecol)
+tracklistbody.appendChild(row)
+
+tracklistbody.parentElement.parentElement.scrollTop = tracklistbody.parentElement.parentElement.scrollHeight
+alert('Track ' + title.innerText + ' Added')
+
+// <th scope="row">1</th>
+                    
+//                     <td>Prison Song</td>
+//                     <td>Tankian, Malakian</td>
+//                     <td>3:21</td>
+//                     <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+
+        }
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#favourite-albums">Favourite Albums</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#album-review">Album Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#least-favourite-albums"
+              >Least Favourite Albums</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tapestry">Album Tapestry</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron d-flex">
+      <div class="row row-cols-2">
+        <h1 class="display-4 text-center">Img</h1>
+        <p class="lead">
+          This is a simple hero unit, a simple jumbotron-style component for
+          calling extra attention to featured content or information.
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="favourite-albums"
+      class="container-fluid text-center font-weight-bold"
+    >
+      <h2 class="card-title">Favourite Albums</h2>
+      <div class="row row-cols-4">
+        <div class="col">
+          <div class="card">
+            <div>
+              <span
+                class="genre position-absolute badge rounded-right border-right border-white border-bottom"
+              >
+                Alternative metal / nu metal
+              </span>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/6/64/SystemofaDownToxicityalbumcover.jpg"
+                class="img-fluid w-100"
+                alt="..."
+              />
+            </div>
+            <div class="card-body">
+              <h3 class="card-title clip">Toxicity</h3>
+              <h4 class="card-title clip">System of a Down</h4>
+              <h6 class="card-title clip">2001</h6>
+              <h6 class="card-title clip">44:01 Minutes</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+            <div class="card">
+              <div>
+                <span
+                  class="genre position-absolute badge rounded-right border-right border-white border-bottom"
+                >
+                Alternative rock / post-grunge / grunge
+                </span>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0d/FooFighters-TheColourAndTheShape.jpg/220px-FooFighters-TheColourAndTheShape.jpg"
+                  class="img-fluid w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title clip">The Colour and the Shape</h3>
+                <h4 class="card-title clip">Foo Fighters</h4>
+                <h6 class="card-title clip">1997</h6>
+                <h6 class="card-title clip">46:47 Minutes</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div>
+                <span
+                  class="genre position-absolute badge rounded-right border-right border-white border-bottom"
+                >
+                Grunge / alternative rock
+                </span>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/NirvanaNevermindalbumcover.jpg/220px-NirvanaNevermindalbumcover.jpg"
+                  class="img-fluid w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title clip">Nevermind</h3>
+                <h4 class="card-title clip">Nirvana</h4>
+                <h6 class="card-title clip">1991</h6>
+                <h6 class="card-title clip">42:36 Minutes</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div>
+                <span
+                  class="genre position-absolute badge rounded-right border-right border-white border-bottom"
+                >
+                Pop-punk / alternative rock
+                </span>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Blink-182_-_Blink-182_cover.jpg/220px-Blink-182_-_Blink-182_cover.jpg"
+                  class="img-fluid w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title clip">Blink-182</h3>
+                <h4 class="card-title clip">Blink-182</h4>
+                <h6 class="card-title clip">2003</h6>
+                <h6 class="card-title clip">49:16 Minutes</h6>
+              </div>
+            </div>
+          </div>
+
+     
+      </div>
+    </div>
+
+    <div
+      id="album-review"
+      class="container-fluid text-center font-weight-bold mt-5 position-relative pb-2"
+    >
+      <h2 class="card-title">Album Review</h2>
+      <div class="row row-cols-2">
+        <div class="col text-right">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/6/64/SystemofaDownToxicityalbumcover.jpg"
+            class="img-fluid h-100"
+          />
+        </div>
+        <div class="col text-left">
+          <h2 class="card-title">Toxicity</h2>
+          <div class="card-subtitle pt-3">
+            <h6>System of a Down</h6>
+          </div>
+          <div class="card-subtitle pt-1">
+            <h6>Alternative metal / nu metal</h6>
+          </div>
+          <div class="card-subtitle pt-1">
+            <h6>44:01 Minutes</h6>
+          </div>
+          <div>
+            <h2 class="card-title text-center">Tracklist</h2>
+            <div class="overflow-auto" style="height: 300px">
+              <table id="album_review_tracklist" class="table table-striped table-dark text-center">
+                <thead class="sticky-top table-dark w-100 mw-100">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Lyrics</th>
+                    <th scope="col">Length</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    
+                    <td>Prison Song</td>
+                    <td>Tankian, Malakian</td>
+                    <td>3:21</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                                        <td>Needles</td>
+                                        <td>Tankian, Malakian</td>
+                    <td>3:12</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Deer Dance</td>
+                    <td>Tankian, Malakian</td>
+                    <td>2:55</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Jet Pilot</td>
+                    <td>Tankian</td>
+                    <td>2:05</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>X</td>
+                    <td>Tankian</td>
+                    <td>1:57</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>Chop Suey!</td>
+                    <td>Tankian, Malakian</td>
+                    <td>3:30</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7</th>
+                    <td>Bounce</td>
+                    <td>Tankian</td>
+                    <td>1:54</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>Forest</td>
+                    <td>Tankian</td>
+                    <td>4:02</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">9</th>
+                    <td>ATWA</td>
+                    <td>Tankian, Malakian</td>
+                    <td>2:56</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10</th>
+                    <td>Science</td>
+                    <td>Tankian</td>
+                    <td>2:42</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">11</th>
+                    <td>Shimmy</td>
+                    <td>Tankian</td>
+                    <td>1:50</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">12</th>
+                    <td>Toxicity</td>
+                    <td>Tankian</td>
+                    <td>3:40</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">13</th>
+                    <td>Psycho</td>
+                    <td>Tankian, Malakian</td>
+                    <td>3:48</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">14</th>
+                    <td>Aerials</td>
+                    <td>Tankian, Malakian</td>
+                    <td>6:11</td>
+                    <td><button type="button" onclick="deletetrack(event);" class="btn btn-danger">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            </div>
+            <div class="text-center">
+
+          
+            <button id="addtrackbutton" class="btn border bg-dark text-light m-2 rounded" data-toggle="modal" data-target="#addtrackmodal">Add Track</button>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="addtrackmodal" tabindex="-1" role="dialog" aria-labelledby="addtrackmodal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content  bg-dark text-white">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Add New Track</h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="bg-dark text-center container">
+                    <div class="row row-cols-2">
+                        <div class="col mt-2">
+                            #
+                        </div>
+                        <div class="col mt-2">
+                            <input id="new_track_number" type="number" class="form-control bg-dark text-white border">
+                        </div>
+                        <div class="col mt-2">
+                            Title
+                        </div>
+                        <div class="col mt-2">
+                            <input id="new_track_title" type="text" class="form-control bg-dark text-white border">
+                        </div>
+                        <div class="col mt-2">
+                            Lyrics
+                        </div>
+                        <div class="col mt-2">
+                            <input id="new_track_lyrics" type="text" class="form-control bg-dark text-white border">
+                        </div>
+                        <div class="col mt-2">
+                            Length
+                        </div>
+                        <div class="col mt-2 d-flex">
+                            <input id="new_track_length" type="number" class="form-control bg-dark text-white border">
+                            
+                                <span class="input-group-text bg-dark text-white" id="basic-addon2">minutes</span>
+                             
+                        </div>
+                    </div>
+
+                </div>
+                    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-danger text-white border" data-dismiss="modal">Close</button>
+              <button type="button" onclick="addtrack();" class="btn text-white border">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div
+      id="least-favourite-albums"
+      class="container-fluid text-center font-weight-bold mt-5"
+    >
+      <h2 class="card-title">Least Favourite Albums</h2>
+      <div class="row">
+        <div class="col-md-4 col-lg-3 col-sm-6">
+          <div class="card rounded">
+            <div class="row pt-3 pb-3">
+              <div class="col-6">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/1/1d/Mr_Blobby_SCover.jpg"
+                  class="w-100"
+                />
+              </div>
+              <div class="col-md-6 d-flex flex-column ml-auto">
+                <h2 class="card-title text-left">Mr Blobby: The Album</h2>
+                <div class="card-subtitle pt-3 text-left">
+                  <h6>Mr Blobby</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>Pop, novelty</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>3:34 Minutes</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 col-sm-6">
+          <div class="card">
+            <div class="row pt-3 pb-3">
+              <div class="col-6">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Myworld2.jpg/220px-Myworld2.jpg"
+                  class="w-100"
+                />
+              </div>
+              <div class="col-md-6 d-flex flex-column ml-auto">
+                <h2 class="card-title text-left">My World 2.0</h2>
+                <div class="card-subtitle pt-3 text-left">
+                  <h6>Justin Bieber</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>Teen pop / dance-pop</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>37:37 Minutes</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 col-sm-6">
+          <div class="card">
+            <div class="row pt-3 pb-3">
+              <div class="col-6">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/LilWayneRebirth.jpg/220px-LilWayneRebirth.jpg"
+                  class="w-100"
+                />
+              </div>
+              <div class="col-md-6 d-flex flex-column ml-auto">
+                <h2 class="card-title text-left">Rebirth</h2>
+                <div class="card-subtitle pt-3 text-left">
+                  <h6>Lil Wayne</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>Rap rock</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>46:43 Minutes</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3 col-sm-6">
+          <div class="card">
+            <div class="row pt-3 pb-3">
+              <div class="col-6">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Lifeondisplay.jpg/220px-Lifeondisplay.jpg"
+                  class="w-100"
+                />
+              </div>
+              <div class="col-md-6 d-flex flex-column ml-auto">
+                <h2 class="card-title text-left">Puddle of Mudd</h2>
+                <div class="card-subtitle pt-3 text-left">
+                  <h6>Life on Display</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>Post-grunge / alternative metal</h6>
+                </div>
+                <div class="card-subtitle pt-1 text-left">
+                  <h6>55:36 Minutes</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="tapestry"
+      class="container-fluid text-center font-weight-bold w-100 mt-5 row border p-0 m-0"
+    >
+      <div class="text-center w-100">
+        <h2 class="card-title text-center">Album Tapestry</h2>
+      </div>
+      <div class="row">
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/AFI_-_The_Art_of_Drowning_cover.jpg/220px-AFI_-_The_Art_of_Drowning_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Green_Day_-_Warning_cover.jpg/220px-Green_Day_-_Warning_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Good_charlotte_.jpg/220px-Good_charlotte_.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Wheatus_Wheatus.jpg/220px-Wheatus_Wheatus.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Motion_City_Soundtrack_-_My_Dinosaur_Life_cover.jpg/220px-Motion_City_Soundtrack_-_My_Dinosaur_Life_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://f4.bcbits.com/img/a3876584281_16.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Alkaline_Trio_-_This_Addiction_cover.jpg/220px-Alkaline_Trio_-_This_Addiction_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/a/a3/Casually_dressed.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Fall_Out_Boy_-_From_Under_the_Cork_Tree_-_CD_album_cover.jpg/220px-Fall_Out_Boy_-_From_Under_the_Cork_Tree_-_CD_album_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Linkin_Park_Hybrid_Theory_Album_Cover.jpg/220px-Linkin_Park_Hybrid_Theory_Album_Cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sum_41_All_Killer_No_Filler.jpg/220px-Sum_41_All_Killer_No_Filler.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/a/a5/PuddleOfMudd_-_ComeClean.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Blink-182_-_Enema_of_the_State_cover.jpg/220px-Blink-182_-_Enema_of_the_State_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/7/79/ANThology_AAF.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/6/64/SystemofaDownToxicityalbumcover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/NirvanaNevermindalbumcover.jpg/220px-NirvanaNevermindalbumcover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Blink-182_-_Blink-182_cover.jpg/220px-Blink-182_-_Blink-182_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Nickelback_-_Silver_Side_Up_-_CD_cover.jpg/220px-Nickelback_-_Silver_Side_Up_-_CD_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Linkin_Park_Meteora_Album_Cover.jpg/220px-Linkin_Park_Meteora_Album_Cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Blink-182_-_Cheshire_Cat_cover.jpg/220px-Blink-182_-_Cheshire_Cat_cover.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Slipknot_-_Vol._3-_%28The_Subliminal_Verses%29.jpg/220px-Slipknot_-_Vol._3-_%28The_Subliminal_Verses%29.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/d/d3/Hours_-_Funeral_for_a_Friend.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Mezmerize-LP.jpg/220px-Mezmerize-LP.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+
+        <div class="col-1 p-0 m-0">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/4/48/Papa_Roach_Infest.jpg/220px-Papa_Roach_Infest.jpg"
+            class="w-100 mw-100"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
