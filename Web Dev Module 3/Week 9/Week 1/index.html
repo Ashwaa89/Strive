@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncy Ball</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      .contaniner {
+        background-color: #94bbde;
+        margin: auto;
+        width: 30vw;
+        height: 30vw;
+        display: flex;
+        justify-content: center;
+      }
+      .ball {
+        width: 10%;
+        height: 10%;
+        border-radius: 50%;
+        background-color: #ff5722;
+        top: 10%;
+        position: relative;
+        animation: bounce 0.3s cubic-bezier(0.51, 0.05, 0.93, 0.48) infinite alternate;
+      }
+      @keyframes bounce {
+        0% {
+          top: 5%;
+        }
+        90% {
+          width: 5%;
+          height: 15%;
+        }
+        100% {
+          top: 90%;
+          height: 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contaniner">
+      <div class="ball"></div>
+    </div>
+  </body>
+</html>
