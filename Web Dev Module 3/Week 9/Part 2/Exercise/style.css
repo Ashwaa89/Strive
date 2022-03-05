@@ -1,0 +1,75 @@
+.bg-black {
+  background-color: black !important;
+  max-height: 100vh;
+}
+
+.section .content .col:last-of-type::before {
+  content: "";
+  height: 100%;
+  display: block;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.carousel-item-left .section .content .col:last-of-type::before,
+.carousel-item-right .section .content .col:last-of-type::before {
+  display: none;
+}
+
+.overflow-y {
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+.section .carousel-inner {
+  opacity: 0;
+  transform: translateY(-100%);
+  z-index: 1;
+}
+
+.section:nth-child(1) .carousel-inner {
+  animation-delay: 0s;
+}
+.section:nth-child(2) .carousel-inner {
+  animation-delay: 0.5s;
+}
+.section:nth-child(3) .carousel-inner {
+  animation-delay: 1s;
+}
+
+.section .carousel-inner {
+  opacity: 0;
+  animation: slidedown 0.5s both;
+}
+.carousel-indicators {
+  animation: fadein 0.5s both;
+}
+.section:nth-child(1) .carousel-indicators {
+  animation-delay: 0.5s;
+}
+.section:nth-child(2) .carousel-indicators {
+  animation-delay: 1s;
+}
+.section:nth-child(3) .carousel-indicators {
+  animation-delay: 1.5s;
+}
+
+@keyframes slidedown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

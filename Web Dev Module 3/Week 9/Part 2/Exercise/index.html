@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Striveflix</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+</head>
+
+<body class="bg-black overflow-hidden">
+
+    <div class="position-absolute w-100 h-100 ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black px-5">
+            <a class="navbar-brand" href="#"><img src="assets/imgs/Netflix_Logo_RGB.png" width="100"
+                    alt="Netflix Logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">TV Shows</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Movies</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Recently Added</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">My List</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav m-0 text-white">
+                    <li class="text-white my-auto  mx-2"><i class="bi bi-search"></i>
+                    </li>
+                    <li class="my-auto">
+                        <a class="nav-link mx-2" href="#">Kids</a>
+                    </li>
+                    <li class="text-white my-auto  mx-2"><i class="bi bi-bell-fill"></i>
+                    </li>
+                    <li id="user_profile" class="mx-2 my-auto nav-link dropdown-toggle" data-target="#user_dropdown"
+                        href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+
+                        <img src="https://st2.depositphotos.com/1009634/7235/v/950/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg"
+                            width="25" class="img-fluid pr-1">
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user_profile">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container-fluid bg-black  pt-2  px-5 text-white ">
+            <div class="row  px-2">
+                <div class="col d-flex">
+                    <div>
+                        <h1>TV Shows</h1>
+                    </div>
+                    <div class="mx-5 my-auto">
+                        <div class="dropdown">
+                            <button class="border-secondary  bg-black border text-white dropdown-toggle p-1 "
+                                type="button" id="genredropdown" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="mr-4 d-inline">
+                                    Genres
+                                </div>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col  mr-0 text-right m-0 my-auto">
+                    <i class="bi bi-filter-left border border-5 px-2 d-inline"></i><i
+                        class="bi bi-grid border border-5 border-secondary px-2"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        
+        <div class="overflow-y">
+<div class="section container-fluid px-0 w-100 ml-5 text-white">
+                <div class="row px-0 mt-3">
+                    <div class="col d-flex mx-2">
+                        <div>
+                            <h3>Trending Now</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="section_1_carousel" class="carousel slide " data-ride="carousel" data-bs-interval="false"
+                    data-interval="false">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/2.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/3.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/4.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/6.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/8.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/9.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/10.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/11.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/12.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/13.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/14.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/15.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/16.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/17.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/18.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row px-0 m-0">
+                        <div class="col d-flex  mt-4 py-3">
+                            <ol class="carousel-indicators">
+                                <li data-target="#section_1_carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#section_1_carousel" data-slide-to="1"></li>
+                                <li data-target="#section_1_carousel" data-slide-to="2"></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+
+</div>
+
+<div class="section container-fluid px-0 w-100 ml-5 text-white">
+                <div class="row px-0 ">
+                    <div class="col d-flex mx-2">
+                        <div>
+                            <h3>Watch It Again</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="section_2_carousel" class="carousel slide " data-ride="carousel" data-bs-interval="false"
+                    data-interval="false">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="  row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/8.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/9.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/10.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/11.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/12.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/13.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/2.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/3.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/4.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/6.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/14.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/15.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/16.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/17.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/18.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row px-0 m-0">
+                        <div class="col d-flex  mt-4 py-3">
+                            <ol class="carousel-indicators">
+                                <li data-target="#section_2_carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#section_2_carousel" data-slide-to="1"></li>
+                                <li data-target="#section_2_carousel" data-slide-to="2"></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+</div>
+
+
+<div class=" section container-fluid px-0 w-100 ml-5 text-white">
+                <div class="row px-0">
+                    <div class="col d-flex mx-2">
+                        <div>
+                            <h3>New Releases</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section_3_carousel" class="carousel slide" data-ride="carousel" data-bs-interval="false"
+                    data-interval="false">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/14.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/15.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/16.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/17.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/18.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/1.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/2.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/3.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/4.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/5.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/6.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" row row-cols-7 ml-1" style="width:110%">
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/7.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/8.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/9.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/10.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/11.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/12.png" class="img-fluid w-100 px-1">
+                                </div>
+                                <div class="col   p-0">
+                                    <img src="assets/imgs/movies/13.png" class="img-fluid w-100 px-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row px-0 m-0">
+                        <div class="col d-flex  mt-4 py-3">
+                            <ol class="carousel-indicators">
+                                <li data-target="#section_3_carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#section_3_carousel" data-slide-to="1"></li>
+                                <li data-target="#section_3_carousel" data-slide-to="2"></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
