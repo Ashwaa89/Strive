@@ -211,3 +211,216 @@
     </div>
   </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .pointer {
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      let products;
+      let cart = [];
+      let filtered = [];
+      const getproducts = function () {
+        fetch("https://striveschool-api.herokuapp.com/books")
+          .then((response) => response.json())
+          .then((result) => {
+            products = result;
+            writeproducts(products);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+
+      const writeproducts = function (items) {
+        document.querySelector("#products").innerHTML = items
+          .map(
+            (i) =>
+              `<div class="col"><div class="card border rounded Item-${
+                i.asin
+              } ${cart.includes(i.asin) ? "border-5 border-info" : ""}">
+<img src="${i.img}" class="card-img-top" alt="${i.title}" height="600" >
+<div class="card-body">
+    <div class="d-flex">
+<h6 class="card-title py-2">${i.title}</h6>
+<div class="ms-auto w-50 my-auto text-end">
+<i class="bi bi-bag-plus-fill px-2 pointer "  onclick="addtocart('${
+                i.asin
+              }');"></i>
+
+
+<i class="bi bi-x-circle  text-danger px-2 pointer" onclick="skip('${
+                i.asin
+              }');"></i>
+<a href="https://www.amazon.co.uk/s?k=${
+                i.asin
+              }" target="_blank"><i class="bi bi-info-lg  text-primary px-2 "></i></a>
+</div>
+</div>
+<div class="d-flex ">            
+<h5 class="card-title">${
+                i.category.slice(0, 1).toUpperCase() + i.category.slice(1)
+              }</h6>
+<h5 class="card-title ms-auto">£${i.price}</h5>
+</div>
+</div>
+</div>
+</div>`
+          )
+          .join("");
+      };
+
+      const addtocart = function (id) {
+        cart.push(id);
+        document.querySelector(".Item-" + id).className +=
+          " border-5 border-info";
+        fillcart();
+      };
+
+      const fillcart = function () {
+        document.querySelector("#basketcount").innerHTML =
+          cart.length > 0 ? cart.length : "";
+        document.querySelector("#cart").innerHTML = products
+          .filter((i) => cart.includes(i.asin))
+          .map(
+            (i) =>
+              `<div class="col">
+<div class="card border-0" >
+<div class="d-flex dropdown-menu-dark justify-content-between">
+<div class="w-100 text-center"> £${(
+                i.price * cart.filter((c) => (c.asin = i.asin)).length
+              ).toFixed(0)}</div>
+<i class="bi bi-x-circle text-danger pointer  text-end" onclick="removeitem('${
+                i.asin
+              }');"></i>
+</div>
+<img src="${i.img}" class="card-img-top" alt="${i.title}">
+</div>
+</div>`
+          )
+          .join("");
+
+        document.querySelector("#carttotal").innerHTML =
+          cart.length === 0
+            ? ""
+            : " £" +
+              cart
+                .map((i) => products.find((item) => item.asin === i))
+                .map((i) => i.price)
+                .reduce((prev, cur) => prev + cur)
+                .toFixed(2);
+      };
+
+      const skip = function (id) {
+        document.querySelector(".Item-" + id).parentElement.className +=
+          "d-none";
+      };
+
+      const search = function (e) {
+        filtered =
+          e.value.length >= 3
+            ? products.filter((i) =>
+                i.title.toUpperCase().includes(e.value.toUpperCase())
+              )
+            : [];
+        writeproducts(filtered.length > 0 ? filtered : products);
+      };
+
+      const removeitem = function (e) {
+        cart = cart.filter((i) => i !== e);
+        document.querySelector(".Item-" + e).classList.remove("border-5");
+        document.querySelector(".Item-" + e).classList.remove("border-info");
+        fillcart();
+        writeproducts(filtered.length > 0 ? filtered : products);
+      };
+
+      const emptycart = function () {
+        cart = [];
+        fillcart();
+        writeproducts(filtered.length > 0 ? filtered : products);
+      };
+
+      window.onload = function () {
+        getproducts();
+      };
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container-fluid justify-content-around">
+        <a class="navbar-brand" href="#"
+          ><i class="bi bi-shop mx-2"></i>Shopping Basket
+        </a>
+
+        <div class="nav navbar-nav ms-2 navbar-brand">
+          <div class="input-group">
+            <span
+              class="input-group-text bg-dark text-white border-0"
+              id="searchtext"
+              ><i class="bi bi-search"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              aria-label="Search"
+              onkeyup="search(this);"
+            />
+          </div>
+        </div>
+
+        <ul class="nav navbar-nav ms-auto navbar-brand">
+          <li class="nav-item dropdown">
+            <i
+              class="bi bi-basket2-fill nav-link px-4 pointer"
+              data-bs-toggle="dropdown"
+            >
+              <div id="basketcount" class="d-inline pointer text-info"></div>
+            </i>
+            <div
+              class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+              style="width: 350px"
+            >
+              <div class="d-flex px-2">
+                <div class="d-flex">
+                  Total:
+                  <div id="carttotal" class="ms-2"></div>
+                </div>
+
+                <div class="mx-2 ms-auto" onclick="emptycart();">
+                  <i class="bi bi-x-octagon-fill text-danger"></i>
+                </div>
+              </div>
+
+              <div class="dropdown-divider"></div>
+
+              <div class="container">
+                <div id="cart" class="row row-cols-3 g-2"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-5">
+      <div id="products" class="row row-cols-4 g-5"></div>
+    </div>
+  </body>
+</html>
