@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script>
+
+
+const postData = async (event) => {
+    event.preventDefault()
+    const data = {
+          name: document.getElementById('name-text').value,
+          description: document.getElementById('description-text').value,
+          brand: document.getElementById('brand-text').value,
+          imageUrl: document.getElementById('img-text').value,
+          price: document.getElementById('price-text').value,
+        }
+await fetch("https://striveschool-api.herokuapp.com/api/product/", {
+
+    method: 'POST',
+    body: JSON.stringify(data),
+headers: {
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzNWNjMGRhMTNhZjAwMTUyYzFjNzUiLCJpYXQiOjE2NDg1ODM4MjcsImV4cCI6MTY0OTc5MzQyN30.vuf4UqtRCXMMrtRtVA7XZ1C1xDIiAFw-wSpMzHKddzo"
+,'Content-Type': 'application/json'}
+}).then(response => 
+response.json()).then(result => {
+    alert('Saved')
+    document.querySelectorAll('.input').forEach(i => i.value = '')
+    console.log('Post result',result)
+}).catch(err => {
+    console.error(err)
+})
+
+
+console.log(data);
+
+}
+</script>
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div>
+                <a class="navbar-brand btn border" href="index.html">          
+                    Products
+                        </a>
+                        <a class="navbar-brand btn border" href="#">          
+                          New product
+                              </a>
+            </div>
+          
+        </div>
+      </nav>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form onsubmit="postData(event)">
+                <div class="form-group">
+                    <h4 class="w-100 text-center my-2">
+                        New Product
+                    </h4>
+
+                <div class="form-group input-group my-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-info-circle"></i></span>
+              
+                  <input id="name-text" type="text" class="form-control input" placeholder="Name" >
+                  </div>
+
+                 
+                <div class="form-group input-group my-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-book"></i></span>
+                    <textarea id="description-text" name="description-text " rows="4" cols="50"  class="form-control input" placeholder="Description">
+</textarea>
+
+                  </div>
+              
+                <div class="form-group input-group my-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-dribbble"></i></span>
+              
+                  <input id="brand-text" type="text" class="form-control input" placeholder="Brand" >
+                  </div>
+
+                <div class="form-group input-group my-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+                    <input id="img-text" type="text" class="form-control input" placeholder="Image URL">
+                  </div>
+              
+                <div class="form-group input-group my-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-cash-coin"></i></span>
+                    <input id="price-text" type="number" class="form-control input" placeholder="Price"  min="0" >
+                  </div>
+              
+    <div class=" px-5">
+        <button type="submit" class="btn btn-info my-2  w-100">Save</button>
+    </div>
+         
+              </form>
+        </div>
+    </div>
+</div>
+
+    
+</body>
+</html>
