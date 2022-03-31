@@ -24,7 +24,7 @@
 
     <script>
       window.onload = function () {
-        document.querySelector('#spinner').classList.toggle('d-none')
+        document.querySelector("#spinner").classList.toggle("d-none");
         getProducts();
       };
 
@@ -50,7 +50,7 @@
   </div>
 </div></div>`
             );
-   document.querySelector('#spinner').classList.toggle('d-none')
+            document.querySelector("#spinner").classList.toggle("d-none");
           })
           .catch((err) => {
             console.error(err);
@@ -62,7 +62,7 @@
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <div>
-                   <a class="navbar-brand btn border" href="backoffice.html">
+          <a class="navbar-brand btn border" href="backoffice.html">
             New product
           </a>
         </div>
@@ -70,11 +70,13 @@
     </nav>
 
     <div class="container-fluid">
-      <h4 class="w-100 text-center my-2 d-flex flex-column">Products <div id="spinner" class=" mx-auto spinner-border d-none" role="status">
-        <span class="sr-only"></span>
-      </div></h4>
-      
-   
+      <h4 class="w-100 text-center my-2 d-flex flex-column">
+        Products
+        <div id="spinner" class="mx-auto spinner-border d-none" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </h4>
+
       <div class="row row-col-2"></div>
     </div>
   </body>

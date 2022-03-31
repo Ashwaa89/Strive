@@ -107,9 +107,6 @@ let preview =   document.querySelector('#img-preview');
 preview.classList.remove('d-none')
 
 preview.innerHTML = `<img class="mx-auto" src="${result.imageUrl}"></div>`
-  console.log(result);
-
-
           })
           .catch((err) => {
             showAlert(err)
