@@ -12,36 +12,117 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script>
 
-
+   const id = new URLSearchParams(window.location.search).get('id')
+   const alert = document.querySelector('#alert')
+function showAlert(msg) {
+    alert.classList.remove('d-none')
+    alert.innerHTML = msg
+}
+function showInvalidInput(id) {
+    document.querySelector(id).classList.add('border-danger')
+    document.querySelector(id).classList.add('border-5')
+}
 const postData = async (event) => {
     event.preventDefault()
-    const data = {
+const Method = event.submitter.innerHTML === 'Save' ? 'POST' : event.submitter.innerHTML === 'Update' ? 'PUT' : 'DELETE'
+
+alert.classList.add('d-none')
+document.querySelectorAll('.input').forEach(i => i.classList.remove('border-danger'))
+document.querySelectorAll('.input').forEach(i => i.classList.remove('border-5'))
+const data = {
           name: document.getElementById('name-text').value,
           description: document.getElementById('description-text').value,
           brand: document.getElementById('brand-text').value,
           imageUrl: document.getElementById('img-text').value,
           price: document.getElementById('price-text').value,
         }
-await fetch("https://striveschool-api.herokuapp.com/api/product/", {
+if(Method === 'POST' || Method === 'PUT') {
+if (data.name === '') {
+    showInvalidInput('#name-text')    
+    showAlert('Name cannot be empty')
+return
+} else if (data.description === '') {
+    showInvalidInput('#description-text')    
+    showAlert('Description cannot be empty')
+return
+} else if (data.brand === '') {
+    showInvalidInput('#brand-text')    
+    showAlert('Brand cannot be empty')
+  } else if (data.imageUrl === '') {
+    showInvalidInput('#img-text')    
+    showAlert('Img link cannot be empty')
+      return
+} else if (data.price === '') {
+    showInvalidInput('#price-text')    
+    showAlert('Price cannot be empty')
+    return
+}
+}
 
-    method: 'POST',
+
+  
+await fetch("https://striveschool-api.herokuapp.com/api/product/" + (Method !== 'POST' ? id : ''), {
+
+    method: Method,
     body: JSON.stringify(data),
 headers: {
 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzNWNjMGRhMTNhZjAwMTUyYzFjNzUiLCJpYXQiOjE2NDg1ODM4MjcsImV4cCI6MTY0OTc5MzQyN30.vuf4UqtRCXMMrtRtVA7XZ1C1xDIiAFw-wSpMzHKddzo"
 ,'Content-Type': 'application/json'}
 }).then(response => 
 response.json()).then(result => {
-    alert('Saved')
+
+
+    alert(Method === 'POST'? 'Saved' : Method === 'PUT' ? 'Updated' : 'Deleted')
     document.querySelectorAll('.input').forEach(i => i.value = '')
     console.log('Post result',result)
 }).catch(err => {
-    console.error(err)
-})
+    showAlert(err)
+ })
 
 
 console.log(data);
 
 }
+window.onload = async function() {
+ 
+    if (id !== null) {
+        document.querySelector('#save-button').classList.add("d-none")
+     await  fetch("https://striveschool-api.herokuapp.com/api/product/" + id, {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQzNWNjMGRhMTNhZjAwMTUyYzFjNzUiLCJpYXQiOjE2NDg1ODE4MjQsImV4cCI6MTY0OTc5MTQyNH0.oYKlwwlzoCDVw1nYa9KtjT9wF5P9WRs3_IMcu84Enhc",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            document.title = `Edit ${result.name}`
+            document.querySelector('#page-title').innerHTML = `Edit ${result.name}`
+document.querySelector('#name-text').value = result.name
+document.querySelector('#description-text').value = result.description
+document.querySelector('#brand-text').value = result.brand
+document.querySelector('#img-text').value = result.imageUrl
+document.querySelector('#price-text').value = result.price
+let preview =   document.querySelector('#img-preview');
+preview.classList.remove('d-none')
+
+preview.innerHTML = `<img class="mx-auto" src="${result.imageUrl}"></div>`
+  console.log(result);
+
+
+          })
+          .catch((err) => {
+            showAlert(err)
+          });
+      } else {
+        document.querySelector('#edit-button').classList.add("d-none")
+        document.querySelector('#delete-button').classList.add("d-none")
+      }
+
+    }
+
+
+
 </script>
 
 </head>
@@ -52,9 +133,7 @@ console.log(data);
                 <a class="navbar-brand btn border" href="index.html">          
                     Products
                         </a>
-                        <a class="navbar-brand btn border" href="#">          
-                          New product
-                              </a>
+                      
             </div>
           
         </div>
@@ -64,9 +143,12 @@ console.log(data);
         <div class="col">
             <form onsubmit="postData(event)">
                 <div class="form-group">
-                    <h4 class="w-100 text-center my-2">
+                    <h4 id="page-title" class="w-100 text-center my-2">
                         New Product
                     </h4>
+                    <div id="alert" class="alert alert-danger d-none" role="alert">
+                        This is a warning alert—check it out!
+                      </div>
 
                 <div class="form-group input-group my-3">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-info-circle"></i></span>
@@ -87,9 +169,10 @@ console.log(data);
               
                   <input id="brand-text" type="text" class="form-control input" placeholder="Brand" >
                   </div>
-
+                  <div id="img-preview" class="d-none text-center"></div>
                 <div class="form-group input-group my-3">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+                  
                     <input id="img-text" type="text" class="form-control input" placeholder="Image URL">
                   </div>
               
@@ -98,8 +181,10 @@ console.log(data);
                     <input id="price-text" type="number" class="form-control input" placeholder="Price"  min="0" >
                   </div>
               
-    <div class=" px-5">
-        <button type="submit" class="btn btn-info my-2  w-100">Save</button>
+    <div class=" px-5 d-flex">
+        <button id="save-button" type="submit" class="btn btn-info my-2  w-100 mx-2">Save</button>
+        <button id="edit-button" type="submit" class="btn btn-success my-2  w-100  mx-2">Update</button>
+        <button id="delete-button" type="submit" class="btn btn-danger my-2  w-100  mx-2">Delete</button>
     </div>
          
               </form>

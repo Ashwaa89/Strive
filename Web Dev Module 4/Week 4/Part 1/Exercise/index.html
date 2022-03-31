@@ -24,6 +24,7 @@
 
     <script>
       window.onload = function () {
+        document.querySelector('#spinner').classList.toggle('d-none')
         getProducts();
       };
 
@@ -41,7 +42,7 @@
               (p) => `<div class="col"><div class="card">
   <img src="${p.imageUrl}" class="card-img-top" height="400" alt="${p.name}">
   <div class="card-body">
-    <h5 class="card-title">${p.name}</h5>
+    <h5 class="card-title">${p.name}<a class="text-dark" href="details.html?id=${p._id}"><i class="mx-2 bi bi-info-circle"></i></a>   <a class="text-dark" href="backoffice.html?id=${p._id}"><i class="bi bi-pencil-square"></i></a></h5>
     <h5 class="card-title">${p.brand}</h5>
     <h5 class="card-title">£${p.price}</h5>
     <p class="card-text">${p.description}</p>
@@ -49,7 +50,7 @@
   </div>
 </div></div>`
             );
-            console.log(result);
+   document.querySelector('#spinner').classList.toggle('d-none')
           })
           .catch((err) => {
             console.error(err);
@@ -61,16 +62,19 @@
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <div>
-          <a class="navbar-brand btn border" href="#"> Products </a>
-          <a class="navbar-brand btn border" href="backoffice.html">
+                   <a class="navbar-brand btn border" href="backoffice.html">
             New product
           </a>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <h4 class="w-100 text-center my-2">Products</h4>
+    <div class="container-fluid">
+      <h4 class="w-100 text-center my-2 d-flex flex-column">Products <div id="spinner" class=" mx-auto spinner-border d-none" role="status">
+        <span class="sr-only"></span>
+      </div></h4>
+      
+   
       <div class="row row-col-2"></div>
     </div>
   </body>
