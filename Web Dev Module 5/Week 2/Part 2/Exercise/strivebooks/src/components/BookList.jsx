@@ -16,7 +16,8 @@ import SingleBook from "./SingleBook";
 
 class BookList extends Component {
   state = {
-    filtered: fantasy.concat(history, horror, romance, scifi),
+    // filtered: fantasy.concat(history, horror, romance, scifi),
+    filtered: scifi,
   };
   render() {
     return (
@@ -27,8 +28,9 @@ class BookList extends Component {
             aria-label="Username"
             aria-describedby="basic-addon1"
             onKeyUp={(event) => {
+              console.log(event.target.value)
               let filteredbooks = [];
-              for (let genre of [fantasy, history, horror, romance, scifi]) {
+              for (let genre of [scifi]) {
                 filteredbooks = filteredbooks.concat(
                   ...genre.filter((b) =>
                     b.title

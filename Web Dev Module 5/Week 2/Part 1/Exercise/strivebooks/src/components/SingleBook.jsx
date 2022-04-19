@@ -18,7 +18,7 @@ class SingleBook extends Component {
             src={this.props.book.img}
             height="300"
             onClick={() => {
-              this.setState({ selected: this.state.selected ? false : true });
+              this.setState({ selected: this.state.selected === false  });
             }}
           />
           <Card.Body bg={"dark"}>
