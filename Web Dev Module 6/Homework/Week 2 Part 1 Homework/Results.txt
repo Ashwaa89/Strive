@@ -26,3 +26,6 @@ Q: Find all records with company==="FITCORE" and return email only
 A: Filter: {company:"FITCORE"}
 A: Project: {email:1,_id:0}
 T: 1/97
+
+
+

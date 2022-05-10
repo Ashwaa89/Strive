@@ -5,36 +5,36 @@ import "react-quill/dist/quill.snow.css";
 import "./styles.css";
 const NewBlogPost = (props) => {
   const [text, setText] = useState("");
-  const [blogpost, setBlogpost] = useState({ 
+  const [blogpost, setBlogpost] = useState({
     category: "",
     title: "",
     content: "",
   });
   const addPost = async (e) => {
-    e.preventDefault();  
-    try {      
-       let response = await fetch(
-        `http://localhost:3001/blogposts`,
-        {
-          method: "POST",
-          body: JSON.stringify(blogpost),
-          headers: {
-            "Content-Type": "application/json",
-                 },
-        }
-      );
+    e.preventDefault();
+    try {
+      let response = await fetch(`http://localhost:3001/blogposts`, {
+        method: "POST",
+        body: JSON.stringify(blogpost),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         alert("Blog saved!");
-  
+
         setBlogpost({
           category: "",
-    title: "",
-    content: "",
-        });     
-        e.target.querySelector('#newBlogContent').querySelector('.ql-editor').querySelector('p').innerText = '';
+          title: "",
+          content: "",
+        });
+        e.target
+          .querySelector("#newBlogContent")
+          .querySelector(".ql-editor")
+          .querySelector("p").innerText = "";
         //getComments();
       } else {
-        console.error(response)
+        console.error(response);
         alert("error!");
       }
     } catch (error) {
@@ -46,21 +46,31 @@ const NewBlogPost = (props) => {
       <Form className="mt-5" onSubmit={addPost}>
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Title</Form.Label>
-          <Form.Control size="lg" placeholder="Title" value={blogpost.title} onChange={(e) => {
-                        setBlogpost({
-                          ...blogpost,
-                          title: e.target.value,
-                        });
-                      }} />
+          <Form.Control
+            size="lg"
+            placeholder="Title"
+            value={blogpost.title}
+            onChange={(e) => {
+              setBlogpost({
+                ...blogpost,
+                title: e.target.value,
+              });
+            }}
+          />
         </Form.Group>
         <Form.Group controlId="blog-category" className="mt-3">
           <Form.Label>Category</Form.Label>
-          <Form.Control size="lg" as="select"  value={blogpost.category}   onChange={(e) => {
-                        setBlogpost({
-                          ...blogpost,
-                          category: e.target.value,
-                        });
-                      }}>
+          <Form.Control
+            size="lg"
+            as="select"
+            value={blogpost.category}
+            onChange={(e) => {
+              setBlogpost({
+                ...blogpost,
+                category: e.target.value,
+              });
+            }}
+          >
             <option>Category1</option>
             <option>Category2</option>
             <option>Category3</option>
@@ -70,15 +80,14 @@ const NewBlogPost = (props) => {
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
           <Form.Label>Blog Content</Form.Label>
-          <ReactQuill id="newBlogContent"
-
-
-                       onChange={(content, delta, source, editor) => {
+          <ReactQuill
+            id="newBlogContent"
+            onChange={(content, delta, source, editor) => {
               setBlogpost({
                 ...blogpost,
                 content: editor.getText(content),
               });
-            }}         
+            }}
             className="new-blog-content"
           />
         </Form.Group>
