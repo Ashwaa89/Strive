@@ -14,41 +14,7 @@ const schema = {
       errorMessage: "Title is required and should be in string format",
     },
   },
-  cover: {
-    in: ["body"],
-    isString: {
-      errorMessage: "Cover link is required and should be in string format",
-    },
-  },
-  readTime: {
-    value: {
-      in: ["body"],
-      isNumeric: {
-        errorMessage: "Read Time is required and should be numeric",
-      },
-    },
-    unit: {
-      in: ["body"],
-      isString: {
-        errorMessage: "Read unit is required and should be in string format",
-      },
-    },
-  },
-  author: {
-    name: {
-      in: ["body"],
-      isString: {
-        errorMessage: "Author name is required and should be in string format",
-      },
-    },
-    avatar: {
-      in: ["body"],
-      isString: {
-        errorMessage:
-          "Author avatar is required and should be in string format",
-      },
-    },
-  },
+  
   content: {
     in: ["body"],
     isString: {

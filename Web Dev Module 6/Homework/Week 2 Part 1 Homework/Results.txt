@@ -1,0 +1,28 @@
+Q: Find all records with isActive equals to true
+A: Filter: {isActive:true}
+T: 51/97
+
+Q: Find all records with age greater than 26
+A: Filter: {age:{$gt:26}}
+T: 54/97
+
+Q: Find all records with age greater than 26 and lower or equal than 30
+A: Filter: {age:{$gt:26},age:{$lte:30}}
+T: 62/97
+
+Q: Find all records with brown or blue eyes
+A: Filter: {eyeColor:{$in:["brown","blue"]}}
+T: 66/97
+
+Q: Find all records with no green eyes
+A: Filter: {eyeColor:{$ne:"green"}}
+T: 66/97
+
+Q: Find all records with no green eyes nor blue
+A: Filter: {eyeColor:{$nin:["green","blue"]}}
+T: 35/97
+
+Q: Find all records with company==="FITCORE" and return email only
+A: Filter: {company:"FITCORE"}
+A: Project: {email:1,_id:0}
+T: 1/97

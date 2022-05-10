@@ -2,6 +2,7 @@ import express from "express";
 import createError from "http-errors";
 import blogAuthorsModel from "./model.js";
 import { checkBlogAuthor, checkValidationResult } from "./validation.js";
+import q2m from "query-to-mongo"
 const blogAuthors = express.Router();
 //insert
 //create
@@ -25,11 +26,20 @@ blogAuthors.post(
 //read
 //get
 blogAuthors.get("/", async (req, res, next) => {
+  //localhost:3001/blogauthor?fields=name,surname
   try {
-    const blogAuthors = await blogAuthorsModel.find();
-
-    res.send(blogAuthors);
-  } catch (error) {
+    const query = q2m(req.query)
+    console.log(query)
+    if (!query.options.skip) query.options.skip = 0
+    if (!query.options.limit || query.options.limit > 10) query.options.limit = 20   
+    const total = await blogAuthorsModel.countDocuments(query.criteria)
+    const blogAuthors = await blogAuthorsModel.find(query.criteria, query.options.fields).skip(query.options.skip).limit(query.options.limit).sort(query.options.sort);
+    res.send({
+      links: query.links(`${process.env.URL}/blogposts`, total),
+      total,
+      totalPages: Math.ceil(total / query.options.limit),
+      blogAuthors});
+   } catch (error) {
     next(error);
   }
 });
@@ -38,8 +48,10 @@ blogAuthors.get("/", async (req, res, next) => {
 //read
 //get
 blogAuthors.get("/:id", async (req, res, next) => {
+  //localhost:3001/blogauthor/6271767063696192aa9869f1/?fields=name,surname
   try {
-    const blogAuthor = await blogAuthorsModel.findById(req.params.id);
+    const query = q2m(req.query)
+    const blogAuthor = await blogAuthorsModel.findById(req.params.id, query.options.fields);
     if (blogAuthor) {
       res.send(blogAuthor);
     } else {

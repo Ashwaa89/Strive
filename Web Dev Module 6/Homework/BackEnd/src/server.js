@@ -4,12 +4,13 @@ import mongoose from "mongoose";
 import blogAuthorRouter from "./services/blog/authors/index.js";
 import blogPostRouter from "./services/blog/posts/index.js";
 import { errorHandler } from "./errorHandler.js";
+import cors from "cors";
 const server = express();
 const port = 3001;
 
 server.use(express.json());
 server.use(errorHandler);
-//server.use(cors())
+server.use(cors())
 server.use("/blogAuthor", blogAuthorRouter);
 server.use("/blogPosts", blogPostRouter);
 
@@ -26,6 +27,8 @@ server.use("/blogPosts", blogPostRouter);
 //npm i http-errors
 //npm i cors
 //npm i express-validator
+//npm i query-to-mongo
+//url query:offset = mongo:skip
 //start: npm run dev
 mongoose.connect(process.env.MONGO_CONNECTION_STRING);
 mongoose.connection.on("connected", () => {
