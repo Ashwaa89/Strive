@@ -9,13 +9,15 @@ const blogPostSchema = new Schema(
     cover: { type: String },
     readTime: {
       value: { type: Number },
-      unit: { type: String},
+      unit: { type: String },
     },
     author: {
-      name: { type: String},
+      name: { type: String },
       avatar: { type: String },
     },
     content: { type: String, required: true },
+    author: [{ type: mongoose.Types.ObjectId, ref: "blogAuthors" }],
+    comments: [{ user: String, content: String, dateAdded: Date }],
   },
   {
     timestamps: true,

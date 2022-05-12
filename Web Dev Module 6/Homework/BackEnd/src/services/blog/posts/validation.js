@@ -14,7 +14,7 @@ const schema = {
       errorMessage: "Title is required and should be in string format",
     },
   },
-  
+
   content: {
     in: ["body"],
     isString: {
