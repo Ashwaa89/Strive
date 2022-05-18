@@ -3,6 +3,8 @@ import createError from "http-errors";
 import blogPostModel from "./model.js";
 import { checkBlogPost, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
+import { upload } from "../../image/imageupload.js";
+import { sendEmail } from "../../email/sendEmail.js";
 const blogPosts = express.Router();
 //insert
 //create
@@ -15,8 +17,16 @@ blogPosts.post(
     try {
       const newblogPost = new blogPostModel(req.body);
       const savedblogPost = await newblogPost.save();
+      // To: savedblogPost.author.email
+      sendEmail(
+        "dudley508@gmail.com",
+        "Post Submitted",
+        `Your blog post ${savedblogPost.title} has been successfully posted`,
+        `<h4>Thank you ${savedblogPost.author.name}</h4>`
+      );
       res.send(savedblogPost);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
@@ -209,6 +219,25 @@ blogPosts.delete("/:id/comments/:commentId", async (req, res, next) => {
     const blogPost = await blogPostModel.findByIdAndUpdate(
       req.params.id,
       { $pull: { comments: { _id: req.params.commentId } } },
+      { new: true }
+    );
+    if (blogPost) {
+      res.send(blogPost);
+    } else {
+      next(createError(404, `Blog post (${req.params.id}) not found`));
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Cover
+blogPosts.put("/:id/cover/", upload("covers"), async (req, res, next) => {
+  try {
+    //localhost:3001/blogPosts/62743ef73c93c8f345d5b84d/cover
+    const blogPost = await blogPostModel.findByIdAndUpdate(
+      req.params.id,
+      { $set: { cover: req.file.path } },
       { new: true }
     );
     if (blogPost) {

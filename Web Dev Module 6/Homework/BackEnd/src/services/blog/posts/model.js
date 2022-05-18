@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-
 const { Schema, model } = mongoose;
-
 const blogPostSchema = new Schema(
   {
     category: { type: String, required: true },
