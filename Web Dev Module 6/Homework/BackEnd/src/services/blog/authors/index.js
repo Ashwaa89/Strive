@@ -17,7 +17,7 @@ blogAuthors.post(
       const newblogAuthor = new blogAuthorsModel(req.body);
       const savedblogAuthor = await newblogAuthor.save();
           // To: savedblogAuthor.email
-      sendEmail('dudley508@gmail.com',"Account Created", `Welcome ${savedblogAuthor.name}`,`<h4>Happy Posting</h4>`)
+      sendEmail(process.env.FROM_ADDRESS,"Account Created", `Welcome ${savedblogAuthor.name}`,`<h4>Happy Posting</h4>`)
       res.send(savedblogAuthor);
     } catch (error) {
       next(error);

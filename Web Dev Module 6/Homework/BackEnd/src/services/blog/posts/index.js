@@ -19,7 +19,7 @@ blogPosts.post(
       const savedblogPost = await newblogPost.save();
       // To: savedblogPost.author.email
       sendEmail(
-        "dudley508@gmail.com",
+        process.env.FROM_ADDRESS,
         "Post Submitted",
         `Your blog post ${savedblogPost.title} has been successfully posted`,
         `<h4>Thank you ${savedblogPost.author.name}</h4>`
