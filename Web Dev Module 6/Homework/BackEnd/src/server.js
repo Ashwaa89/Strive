@@ -28,6 +28,10 @@ server.use("/blogPosts", blogPostRouter);
 //npm i cors
 //npm i express-validator
 //npm i query-to-mongo
+//npm i multer
+//npm i cloudinary
+//npm i multer-storage-cloudinary
+//npm i @sendgrid/mail
 //url query:offset = mongo:skip
 //start: npm run dev
 mongoose.connect(process.env.MONGO_CONNECTION_STRING);

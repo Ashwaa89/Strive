@@ -3,6 +3,7 @@ import createError from "http-errors";
 import blogAuthorsModel from "./model.js";
 import { checkBlogAuthor, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
+import { upload } from "../../image/imageupload.js"
 const blogAuthors = express.Router();
 //insert
 //create
@@ -15,6 +16,8 @@ blogAuthors.post(
     try {
       const newblogAuthor = new blogAuthorsModel(req.body);
       const savedblogAuthor = await newblogAuthor.save();
+          // To: savedblogAuthor.email
+      sendEmail('dudley508@gmail.com',"Account Created", `Welcome ${savedblogAuthor.name}`,`<h4>Happy Posting</h4>`)
       res.send(savedblogAuthor);
     } catch (error) {
       next(error);
@@ -87,7 +90,7 @@ blogAuthors.put(
       if (blogAuthor) {
         res.send(blogAuthor);
       } else {
-        next(createError(404, `Blog Author (${req.params.userId}) not found`));
+        next(createError(404, `Blog Author (${req.params.id}) not found`));
       }
     } catch (error) {
       next(error);
@@ -108,5 +111,30 @@ blogAuthors.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+
+
+//Avatar
+blogAuthors.put("/:id/avatar/",upload('avatars'),  async (req,res, next) => {
+  try {
+    //localhost:3001/blogAuthor/6271767063696192aa9869f1/avatar
+
+    const blogAuthor = await blogAuthorsModel.findByIdAndUpdate(
+      req.params.id,
+     {$set:{"avatar":req.file.path}},
+      { new: true }
+    );
+    if (blogAuthor) {
+      res.send(blogAuthor);
+    } else {
+      next(createError(404, `Blog Author (${req.params.id}) not found`));
+    }
+  } catch (error) {
+    next(error);
+  }
+  }
+);
+
+
 
 export default blogAuthors;

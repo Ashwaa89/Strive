@@ -6,12 +6,13 @@ import "./styles.css";
 const NewBlogPost = (props) => {
   const [text, setText] = useState("");
   const [blogpost, setBlogpost] = useState({
-    category: "",
+    category: "Category 1",
     title: "",
     content: "",
   });
   const addPost = async (e) => {
     e.preventDefault();
+    console.log(blogpost)
     try {
       let response = await fetch(`http://localhost:3001/blogposts`, {
         method: "POST",
@@ -34,7 +35,7 @@ const NewBlogPost = (props) => {
           .querySelector("p").innerText = "";
         //getComments();
       } else {
-        console.error(response);
+        alert(response);
         alert("error!");
       }
     } catch (error) {
