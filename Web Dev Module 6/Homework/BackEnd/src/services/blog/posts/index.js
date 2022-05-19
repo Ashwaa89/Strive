@@ -5,12 +5,13 @@ import { checkBlogPost, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
 import { upload } from "../../image/imageupload.js";
 import { sendEmail } from "../../email/sendEmail.js";
+import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
 const blogPosts = express.Router();
 //insert
 //create
 //post
 blogPosts.post(
-  "/",
+  "/",checkAuth,
   checkBlogPost,
   checkValidationResult,
   async (req, res, next) => {
@@ -82,7 +83,7 @@ blogPosts.get("/:id", async (req, res, next) => {
 //update
 //put
 blogPosts.put(
-  "/:id",
+  "/:id",checkAuth,isAdmin,
   checkBlogPost,
   checkValidationResult,
   async (req, res, next) => {
@@ -105,7 +106,7 @@ blogPosts.put(
 );
 
 //delete
-blogPosts.delete("/:id", async (req, res, next) => {
+blogPosts.delete("/:id",checkAuth,isAdmin, async (req, res, next) => {
   try {
     const blogPost = await blogPostModel.findByIdAndDelete(req.params.id);
     if (blogPost) {
@@ -120,7 +121,7 @@ blogPosts.delete("/:id", async (req, res, next) => {
 
 //Comments:
 //post comment
-blogPosts.post("/:id/comments", async (req, res, next) => {
+blogPosts.post("/:id/comments",checkAuth,isAdmin, async (req, res, next) => {
   try {
     //localhost:3001/blogposts/6279aaadc42b7da27af601dd/comments
     const blogPost = await blogPostModel.findById(
@@ -183,7 +184,7 @@ blogPosts.get("/:id/comments/:commentId", async (req, res, next) => {
 });
 
 //Edit Comment
-blogPosts.put("/:id/comments/:commentId", async (req, res, next) => {
+blogPosts.put("/:id/comments/:commentId",checkAuth,isAdmin, async (req, res, next) => {
   try {
     //localhost:3001/blogposts/6279aaadc42b7da27af601dd/comments/627d6a296efad51722368dba
     const blogPost = await blogPostModel.findById({ _id: req.params.id });
@@ -213,7 +214,7 @@ blogPosts.put("/:id/comments/:commentId", async (req, res, next) => {
 });
 
 //Delete Comment
-blogPosts.delete("/:id/comments/:commentId", async (req, res, next) => {
+blogPosts.delete("/:id/comments/:commentId",checkAuth,isAdmin, async (req, res, next) => {
   try {
     //localhost:3001/blogposts/6279aaadc42b7da27af601dd/comments/627d67334e1a066a23b8da9a
     const blogPost = await blogPostModel.findByIdAndUpdate(
@@ -232,7 +233,7 @@ blogPosts.delete("/:id/comments/:commentId", async (req, res, next) => {
 });
 
 //Cover
-blogPosts.put("/:id/cover/", upload("covers"), async (req, res, next) => {
+blogPosts.put("/:id/cover/",checkAuth,isAdmin, upload("covers"), async (req, res, next) => {
   try {
     //localhost:3001/blogPosts/62743ef73c93c8f345d5b84d/cover
     const blogPost = await blogPostModel.findByIdAndUpdate(

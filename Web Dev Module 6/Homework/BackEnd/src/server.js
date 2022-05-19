@@ -32,6 +32,9 @@ server.use("/blogPosts", blogPostRouter);
 //npm i cloudinary
 //npm i multer-storage-cloudinary
 //npm i @sendgrid/mail
+//npm i bcrypt
+//npm i jsonwebtoken
+
 //url query:offset = mongo:skip
 //start: npm run dev
 mongoose.connect(process.env.MONGO_CONNECTION_STRING);

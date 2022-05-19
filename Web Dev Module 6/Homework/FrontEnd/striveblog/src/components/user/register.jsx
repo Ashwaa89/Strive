@@ -1,0 +1,153 @@
+import React, { useCallback, useState } from "react";
+import "../../components/styles.css";
+import {
+  Container,
+  InputGroup,
+  FormControl,
+  Form,
+  Button,
+} from "react-bootstrap";
+
+import { useNavigate } from "react-router-dom";
+
+const Register = (props) => {
+  const navigate = useNavigate();
+  const [newAuthor, setnewAuthor] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    dateOfBirth: "",
+  });
+  const submitRegisterForm = async (e) => {
+    e.preventDefault();
+    let button = e.target.querySelector("button");
+    try {
+      let response = await fetch(`http://localhost:3001/blogAuthor/register`, {
+        method: "POST",
+        body: JSON.stringify(newAuthor),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        button.innerText = "Registered";
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-success");
+        setTimeout(function () {
+          navigate("/login");
+        }, 1000);
+
+        setnewAuthor({
+          name: "",
+          surname: "",
+          email: "",
+          password: "",
+          dateOfBirth: "",
+        });
+      } else {
+        alert(response);
+        alert("error!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return (
+    <Container className="justify-content-between">
+      <h1 className="title">Register</h1>
+      <>
+        <Form onSubmit={submitRegisterForm}>
+          <Container>
+            <InputGroup className="mb-3 my-3 w-100 text-center d-flex flex-column">
+              <div className="d-flex my-1">
+                <FormControl
+                  id="newAuthorName"
+                  placeholder="Name"
+                  aria-label="Name"
+                  aria-describedby="basic-addon1"
+                  required
+                  onChange={(e) => {
+                    setnewAuthor({
+                      ...newAuthor,
+                      name: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="d-flex my-1">
+                <FormControl
+                  id="newAuthorSurname"
+                  placeholder="Surname"
+                  aria-label="Surname"
+                  aria-describedby="basic-addon1"
+                  required
+                  onChange={(e) => {
+                    setnewAuthor({
+                      ...newAuthor,
+                      surname: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="d-flex my-1">
+                <FormControl
+                  id="newAuthorEmail"
+                  placeholder="Email"
+                  aria-label="Email"
+                  aria-describedby="basic-addon1"
+                  type="email"
+                  required
+                  onChange={(e) => {
+                    setnewAuthor({
+                      ...newAuthor,
+                      email: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="d-flex my-1">
+                <FormControl
+                  id="newAuthorPassword"
+                  placeholder="Password"
+                  aria-label="Password"
+                  aria-describedby="basic-addon1"
+                  type="password"
+                  required
+                  onChange={(e) => {
+                    setnewAuthor({
+                      ...newAuthor,
+                      password: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="d-flex my-1">
+                <FormControl
+                  id="newAuthordob"
+                  placeholder="Date of Birth"
+                  aria-label="Date of Birth"
+                  aria-describedby="basic-addon1"
+                  type="Date"
+                  required
+                  onChange={(e) => {
+                    setnewAuthor({
+                      ...newAuthor,
+                      dateOfBirth: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+
+              <Button variant="primary" type="submit" className="my-3">
+                Submit
+              </Button>
+            </InputGroup>
+          </Container>
+        </Form>
+      </>
+    </Container>
+  );
+};
+
+export default Register;

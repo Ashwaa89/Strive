@@ -3,32 +3,122 @@ import createError from "http-errors";
 import blogAuthorsModel from "./model.js";
 import { checkBlogAuthor, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
+
 import { upload } from "../../image/imageupload.js"
+import { sendEmail } from "../../email/sendEmail.js";
+import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
 const blogAuthors = express.Router();
-//insert
-//create
-//post
+
+
+
+
+
+//Register
+//Insert
 blogAuthors.post(
-  "/",
+  "/register",
   checkBlogAuthor,
   checkValidationResult,
   async (req, res, next) => {
     try {
       const newblogAuthor = new blogAuthorsModel(req.body);
-      const savedblogAuthor = await newblogAuthor.save();
+      const savedblogAuthor = await newblogAuthor.save();   
+      
+      console.log(savedblogAuthor)
           // To: savedblogAuthor.email
       sendEmail(process.env.FROM_ADDRESS,"Account Created", `Welcome ${savedblogAuthor.name}`,`<h4>Happy Posting</h4>`)
+     
+     
       res.send(savedblogAuthor);
     } catch (error) {
       next(error);
     }
   }
 );
+//Login
+blogAuthors.post("/login", async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const user = await blogAuthorsModel.checkCredentials(req.body.email, req.body.password)
+    if (user) {   
+
+
+
+      res.send({ accessToken: await generateToken({ _id: user._id, role: user.role }),name:user.name })
+    } else {   
+next(createError(401, "Unauthorised"))
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+//Get Current User
+blogAuthors.get("/me", checkAuth, async (req, res, next) => {
+  try {
+    res.send({ user: await blogAuthorsModel.findById(req.user._id) })
+  } catch (error) {
+    next(error)
+  }
+})
+//update my account
+blogAuthors.put("/me", blogAuthors, async (req, res, next) => {
+  try {
+    const blogAuthor = await blogAuthorsModel.findByIdAndUpdate(
+      req.user._id,
+      req.body,
+      { new: true }
+    );
+    if (blogAuthor) {
+      res.send(blogAuthor);
+    } else {
+      next(createError(404, `Blog Author (${req.user._id}) not found`));
+    }
+  } catch (error) {
+    next(error);
+  }
+
+})
+//delete my account
+blogAuthors.delete("/me", checkAuth, async (req, res, next) => {
+  try {
+    const blogAuthor = await blogAuthorsModel.findById(req.user._id);
+    if (blogAuthor) {
+      res.status(204).send();
+    } else {
+      next(createError(404, `Blog Author (${req.user._id}) not found`));
+    }
+  } catch (error) {
+    next(error);
+  }
+
+})
+//set my Avatar
+blogAuthors.put("/avatar/",checkAuth,upload('avatars'),  async (req,res, next) => {
+  try {
+    //localhost:3001/blogAuthor/6271767063696192aa9869f1/avatar
+    const blogAuthor = await blogAuthorsModel.findByIdAndUpdate(
+      req.user._id,
+     {$set:{"avatar":req.file.path}},
+      { new: true }
+    );
+    if (blogAuthor) {
+      res.send(blogAuthor);
+    } else {
+      next(createError(404, `Blog Author (${req.user._id}) not found`));
+    }
+  } catch (error) {
+    next(error);
+  }
+  }
+);
+
+
+
 
 //select
 //read
 //get
-blogAuthors.get("/", async (req, res, next) => {
+blogAuthors.get("/",checkAuth,isAdmin, async (req, res, next) => {
   //localhost:3001/blogauthor?fields=name,surname
   try {
     const query = q2m(req.query);
@@ -52,7 +142,6 @@ blogAuthors.get("/", async (req, res, next) => {
     next(error);
   }
 });
-
 //select where
 //read
 //get
@@ -73,13 +162,12 @@ blogAuthors.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
 //update
 //put
 blogAuthors.put(
   "/:id",
   checkBlogAuthor,
-  checkValidationResult,
+  checkValidationResult,isAdmin,
   async (req, res, next) => {
     try {
       const blogAuthor = await blogAuthorsModel.findByIdAndUpdate(
@@ -97,9 +185,8 @@ blogAuthors.put(
     }
   }
 );
-
 //delete
-blogAuthors.delete("/:id", async (req, res, next) => {
+blogAuthors.delete("/:id",isAdmin, async (req, res, next) => {
   try {
     const blogAuthor = await blogAuthorsModel.findByIdAndDelete(req.params.id);
     if (blogAuthor) {
@@ -111,11 +198,8 @@ blogAuthors.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
-
 //Avatar
-blogAuthors.put("/:id/avatar/",upload('avatars'),  async (req,res, next) => {
+blogAuthors.put("/:id/avatar/",isAdmin,upload('avatars'),  async (req,res, next) => {
   try {
     //localhost:3001/blogAuthor/6271767063696192aa9869f1/avatar
 

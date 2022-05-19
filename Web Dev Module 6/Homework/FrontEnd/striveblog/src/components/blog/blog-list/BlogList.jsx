@@ -12,7 +12,6 @@ const BlogList = (props) => {
   const params = useSearchParams();
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(async () => {
-    console.log(searchParams.get("limit"));
     let response = await fetch(
       `http://localhost:3001/blogposts?limit=${
         searchParams.get("limit") ? searchParams.get("limit") : 1
@@ -21,6 +20,7 @@ const BlogList = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${props.token}`,
         },
       }
     );
