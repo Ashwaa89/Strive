@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, {useState} from "react";
 import {
   Container,
   InputGroup,
@@ -6,9 +6,8 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { BsFillPersonFill, BsFillKeyFill } from "react-icons/bs";
+import { BsFillPersonFill, BsFillKeyFill,BsGoogle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-
 const Login = (props) => {
   const navigate = useNavigate();
   const [loginAuthor, setloginAuthor] = useState({
@@ -47,7 +46,6 @@ const Login = (props) => {
       console.error(error);
     }
   };
-
   return (
     <Container className="justify-content-between">
       <h1 className="title">Register</h1>
@@ -92,12 +90,26 @@ const Login = (props) => {
                   }}
                 />
               </div>
-              <Button variant="primary" type="submit" className="my-3">
-                Submit
+              <div className="d-flex my-3">
+                <div className="w-100 px-3">
+                <Button variant="primary" type="submit" className="w-100">
+                Login
               </Button>
+                </div>
+                <div className="w-100 px-3">
+                  <a href="http://localhost:3001/blogAuthor/googleLogin">               
+                <Button variant="secondary" type="button" className="w-100">
+                <BsGoogle className="mx-2" />
+                Login With Google
+              </Button>
+              </a>
+                </div>
+              </div>
+              
             </InputGroup>
           </Container>
         </Form>
+       
       </>
     </Container>
   );

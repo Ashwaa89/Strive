@@ -8,10 +8,11 @@ const blogAuthorsSchema = new Schema(
     name: { type: String, required: true },
     surname: { type: String, required: true },
     email: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
-    password: { type: String, required: true },
+    dateOfBirth: { type: Date, required: false },
+    password: { type: String, required: false },
     avatar: { type: String },
     role: { type: String, required: true, default: "User", enum: ["User", "Admin"] },
+    googleId: { type: String, required: false },
   },
   {
     timestamps: true,

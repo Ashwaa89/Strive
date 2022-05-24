@@ -1,14 +1,19 @@
 import express from "express";
 import listEndpoints from "express-list-endpoints";
 import mongoose from "mongoose";
+import expressSession from "express-session";
 import blogAuthorRouter from "./services/blog/authors/index.js";
 import blogPostRouter from "./services/blog/posts/index.js";
 import { errorHandler } from "./errorHandler.js";
+import passport from "passport"
+import GooglePassport from "./services/auth/OAuth.js";
 import cors from "cors";
 const server = express();
 const port = 3001;
-
+passport.use("google",GooglePassport)
 server.use(express.json());
+server.use(passport.initialize());
+server.use(expressSession({ secret:"1234"}))
 server.use(errorHandler);
 server.use(cors())
 server.use("/blogAuthor", blogAuthorRouter);
@@ -34,7 +39,10 @@ server.use("/blogPosts", blogPostRouter);
 //npm i @sendgrid/mail
 //npm i bcrypt
 //npm i jsonwebtoken
-
+//npm i passport
+//npm i express-session
+//npm i passport-google-oauth20
+//npm i node-fetch
 //url query:offset = mongo:skip
 //start: npm run dev
 mongoose.connect(process.env.MONGO_CONNECTION_STRING);

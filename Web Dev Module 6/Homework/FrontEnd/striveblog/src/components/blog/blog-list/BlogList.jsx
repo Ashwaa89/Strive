@@ -14,7 +14,7 @@ const BlogList = (props) => {
   useEffect(async () => {
     let response = await fetch(
       `http://localhost:3001/blogposts?limit=${
-        searchParams.get("limit") ? searchParams.get("limit") : 1
+        searchParams.get("limit") ? searchParams.get("limit") : 100
       }&offset=${searchParams.get("offset")}`,
       {
         method: "GET",
@@ -25,7 +25,9 @@ const BlogList = (props) => {
       }
     );
     if (response.ok) {
+
       let resposts = await response.json();
+      console.log(resposts)
       setPosts(resposts.blogPosts);
       setLinks(resposts.links);
       settotalPages(resposts.totalPages);

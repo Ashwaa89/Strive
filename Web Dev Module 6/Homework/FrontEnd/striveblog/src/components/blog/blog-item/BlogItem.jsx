@@ -6,11 +6,9 @@ import { useState, useEffect } from "react";
 import "./styles.css";
 const BlogItem = (props) => {
   const [post, setPost] = useState();
-
   useEffect(async () => {
     setPost(props.post);
   }, []);
-
   return (
     <>
       {post !== undefined ? (
@@ -36,5 +34,4 @@ const BlogItem = (props) => {
     </>
   );
 };
-
 export default BlogItem;

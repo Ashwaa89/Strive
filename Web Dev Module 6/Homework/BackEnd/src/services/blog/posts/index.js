@@ -5,8 +5,11 @@ import { checkBlogPost, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
 import { upload } from "../../image/imageupload.js";
 import { sendEmail } from "../../email/sendEmail.js";
+
 import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
 const blogPosts = express.Router();
+
+
 //insert
 //create
 //post
@@ -66,6 +69,8 @@ blogPosts.get("/", async (req, res, next) => {
 //get
 blogPosts.get("/:id", async (req, res, next) => {
   //localhost:3001/blogposts/62743ef73c93c8f345d5b84d/?fields=cover,title
+console.log(req.params.id)
+
   try {
     const blogPost = await blogPostModel
       .findById({ _id: req.params.id }, q2m(req.query).options.fields)

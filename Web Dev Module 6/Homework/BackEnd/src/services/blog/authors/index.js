@@ -3,7 +3,7 @@ import createError from "http-errors";
 import blogAuthorsModel from "./model.js";
 import { checkBlogAuthor, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
-
+import passport from "passport"
 import { upload } from "../../image/imageupload.js"
 import { sendEmail } from "../../email/sendEmail.js";
 import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
@@ -21,6 +21,7 @@ blogAuthors.post(
   checkValidationResult,
   async (req, res, next) => {
     try {
+      console.log(req.body)
       const newblogAuthor = new blogAuthorsModel(req.body);
       const savedblogAuthor = await newblogAuthor.save();   
       
@@ -28,8 +29,8 @@ blogAuthors.post(
           // To: savedblogAuthor.email
       sendEmail(process.env.FROM_ADDRESS,"Account Created", `Welcome ${savedblogAuthor.name}`,`<h4>Happy Posting</h4>`)
      
-     
-      res.send(savedblogAuthor);
+      res.send({ accessToken: await generateToken({ _id: savedblogAuthor._id, role: savedblogAuthor.role }),name:savedblogAuthor.name })
+    
     } catch (error) {
       next(error);
     }
@@ -38,12 +39,8 @@ blogAuthors.post(
 //Login
 blogAuthors.post("/login", async (req, res, next) => {
   try {
-    console.log(req.body)
     const user = await blogAuthorsModel.checkCredentials(req.body.email, req.body.password)
     if (user) {   
-
-
-
       res.send({ accessToken: await generateToken({ _id: user._id, role: user.role }),name:user.name })
     } else {   
 next(createError(401, "Unauthorised"))
@@ -60,6 +57,8 @@ blogAuthors.get("/me", checkAuth, async (req, res, next) => {
     next(error)
   }
 })
+
+
 //update my account
 blogAuthors.put("/me", blogAuthors, async (req, res, next) => {
   try {
@@ -92,6 +91,20 @@ blogAuthors.delete("/me", checkAuth, async (req, res, next) => {
   }
 
 })
+
+//Google Login
+blogAuthors.get("/googleLogin", passport.authenticate("google", { scope: ["profile", "email"] }))
+
+//Google Redirect
+blogAuthors.get("/googleRedirect", passport.authenticate("google"), async (req, res, next) => {
+
+  try {
+    console.log(process.env.FE_URL)
+    res.redirect(`${process.env.FE_URL}/googleredirect?accessToken=${req.user.accessToken}&name=${req.user.name}`)
+  } catch (error) {
+    next(error)
+  }
+})
 //set my Avatar
 blogAuthors.put("/avatar/",checkAuth,upload('avatars'),  async (req,res, next) => {
   try {
@@ -115,11 +128,14 @@ blogAuthors.put("/avatar/",checkAuth,upload('avatars'),  async (req,res, next) =
 
 
 
+
+
 //select
 //read
 //get
 blogAuthors.get("/",checkAuth,isAdmin, async (req, res, next) => {
   //localhost:3001/blogauthor?fields=name,surname
+  console.log('found route')
   try {
     const query = q2m(req.query);
     console.log(query);

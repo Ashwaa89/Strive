@@ -7,7 +7,7 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-
+import { BsGoogle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
@@ -139,9 +139,21 @@ const Register = (props) => {
                 />
               </div>
 
-              <Button variant="primary" type="submit" className="my-3">
-                Submit
+              <div className="d-flex my-3">
+                <div className="w-100 px-3">
+                <Button variant="primary" type="submit" className="w-100">
+                Register
               </Button>
+                </div>
+                <div className="w-100 px-3">
+                  <a href="http://localhost:3001/blogAuthor/googleLogin">               
+                <Button variant="secondary" type="button" className="w-100">
+                <BsGoogle className="mx-2" />
+                Register With Google
+              </Button>
+              </a>
+                </div>
+              </div>
             </InputGroup>
           </Container>
         </Form>
