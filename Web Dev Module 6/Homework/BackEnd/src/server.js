@@ -15,7 +15,20 @@ server.use(express.json());
 server.use(passport.initialize());
 server.use(expressSession({ secret:"1234"}))
 server.use(errorHandler);
-server.use(cors())
+server.use(cors({
+  origin: (origin, next) => {
+    // YOU NEED THIS TO CONNECT YOUR FE TO THIS BE
+    console.log("CURRENT ORIGIN: ", origin)
+
+    if (whitelist.indexOf(origin) !== -1) {
+      // if origin is in the whitelist --> next
+      next(null, true)
+    } else {
+      // if origin is NOT in the whitelist --> trigger an error
+      next(createError(400, `CORS ERROR! Your origin: ${origin} is not in the whitelist!`))
+    }
+  },
+}))
 server.use("/blogAuthor", blogAuthorRouter);
 server.use("/blogPosts", blogPostRouter);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING);

@@ -4,7 +4,7 @@ import blogPostModel from "./model.js";
 import { checkBlogPost, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
 import { upload } from "../../image/imageupload.js";
-import { sendEmail } from "../../email/sendEmail.js";
+import { sendEmail } from "../../email/sendemail.js";
 
 import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
 const blogPosts = express.Router();

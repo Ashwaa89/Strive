@@ -29,4 +29,4 @@
 
 
 Host front end on Vercel
-Host back end on Herokfa
+Host back end on heroku

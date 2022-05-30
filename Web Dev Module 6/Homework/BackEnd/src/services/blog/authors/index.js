@@ -5,7 +5,7 @@ import { checkBlogAuthor, checkValidationResult } from "./validation.js";
 import q2m from "query-to-mongo";
 import passport from "passport"
 import { upload } from "../../image/imageupload.js"
-import { sendEmail } from "../../email/sendEmail.js";
+import { sendEmail } from "../../email/sendemail.js";
 import { generateToken,checkAuth,isAdmin } from "../../auth/auth.js"
 const blogAuthors = express.Router();
 
