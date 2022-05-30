@@ -96,7 +96,7 @@ blogAuthors.delete("/me", checkAuth, async (req, res, next) => {
 blogAuthors.get("/googleLogin", passport.authenticate("google", { scope: ["profile", "email"] }))
 
 //Google Redirect
-blogAuthors.get("/googleRedirect", passport.authenticate("google"), async (req, res, next) => {
+blogAuthors.get("/googleRedirect", passport.authenticate("google",{session:false}), async (req, res, next) => {
 
   try {
     console.log(process.env.FE_URL)
